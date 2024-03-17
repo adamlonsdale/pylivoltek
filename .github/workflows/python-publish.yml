@@ -36,7 +36,7 @@ jobs:
       id: get-latest-tag
     - name: Version
       run: |
-         bump2version --new-version ${{ steps.bump-semver.outputs.new_version }} minor setup.py
+         bump2version --new-version ${{ steps.get-latest-tag.outputs.tag }} minor setup.py
     - name: Build package
       run: python -m build
     - name: Publish package
