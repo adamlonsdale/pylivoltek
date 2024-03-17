@@ -34,11 +34,6 @@ jobs:
         pip install build bump2version
     - uses: actions-ecosystem/action-get-latest-tag@v1
       id: get-latest-tag
-    - uses: actions-ecosystem/action-bump-semver@v1
-      id: bump-semver
-      with:
-        current_version: ${{ steps.get-latest-tag.outputs.tag }}
-        level: minor
     - name: Version
       run: |
          bump2version --new-version ${{ steps.bump-semver.outputs.new_version }} minor setup.py
@@ -49,7 +44,3 @@ jobs:
       with:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
-    - uses: actions-ecosystem/action-push-tag@v1
-      with:
-        tag: ${{ steps.bump-semver.outputs.new_version }}
-        message: '${{ steps.bump-semver.outputs.new_version }}'
