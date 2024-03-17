@@ -1,12 +1,4 @@
-# This workflow will upload a Python Package using Twine when a release is created
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: P Python Package
+name: Python Package
 
 on:
   release:
@@ -34,9 +26,12 @@ jobs:
         pip install build bump2version
     - uses: actions-ecosystem/action-get-latest-tag@v1
       id: get-latest-tag
-    - name: Version
-      run: |
-         bump2version --new-version ${{ steps.get-latest-tag.outputs.tag }} minor setup.py
+    - name: File Regex Replace
+      uses: mingjun97/file-regex-replace@v1
+      with:
+        regex: "VERSION = \"(\\d*\\.\\d*\\.\\d*)\""
+        replacement: steps.get-latest-tag.outputs.tag
+        include: setup.py
     - name: Build package
       run: python -m build
     - name: Publish package
