@@ -22,13 +22,17 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install build bump2version
-    - uses: actions-ecosystem/action-get-latest-tag@v1
-      id: get-latest-tag
+    - id: get-latest-tag
+      uses: actions-ecosystem/action-get-latest-tag@v1
+    - id: extract-version
+      run: |
+        version=$(echo ${{steps.get-latest-tag.outputs.tag}} | cut -b2-)
+        echo "version=$version" >> $GITHUB_OUTPUT
     - name: File Regex Replace
       uses: mingjun97/file-regex-replace@v1
       with:
         regex: "VERSION = \"(\\d*\\.\\d*\\.\\d*)\""
-        replacement: ${{ steps.get-latest-tag.outputs.tag }}
+        replacement: "VERSION = \"${{ steps.extract-version.outputs.version }}\""
         include: setup.py
     - name: Build package
       run: python -m build
