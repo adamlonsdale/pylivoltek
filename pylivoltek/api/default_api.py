@@ -254,47 +254,49 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_signal_device_status(self, is_use_change_unit, id, **kwargs):  # noqa: E501
-        """Signal Device Status  # noqa: E501
+    def get_recent_grid_import_export(self, site_id, user_token, **kwargs):  # noqa: E501
+        """Site historical grid import & export in recent 3 days  # noqa: E501
 
-        Undocumented  # noqa: E501
+        Query the power grid electricity in the past three days of the specified power station (Wh).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_signal_device_status(is_use_change_unit, id, async_req=True)
+        >>> thread = api.get_recent_grid_import_export(site_id, user_token, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param object is_use_change_unit: Is Use Change Unit?? (required)
-        :param object id: Device ID (required)
-        :return: InlineResponse2007
+        :param object site_id: (required)
+        :param object user_token: (required)
+        :param object user_type:
+        :return: InlineResponse2009
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_signal_device_status_with_http_info(is_use_change_unit, id, **kwargs)  # noqa: E501
+            return self.get_recent_grid_import_export_with_http_info(site_id, user_token, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_signal_device_status_with_http_info(is_use_change_unit, id, **kwargs)  # noqa: E501
+            (data) = self.get_recent_grid_import_export_with_http_info(site_id, user_token, **kwargs)  # noqa: E501
             return data
 
-    def get_signal_device_status_with_http_info(self, is_use_change_unit, id, **kwargs):  # noqa: E501
-        """Signal Device Status  # noqa: E501
+    def get_recent_grid_import_export_with_http_info(self, site_id, user_token, **kwargs):  # noqa: E501
+        """Site historical grid import & export in recent 3 days  # noqa: E501
 
-        Undocumented  # noqa: E501
+        Query the power grid electricity in the past three days of the specified power station (Wh).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_signal_device_status_with_http_info(is_use_change_unit, id, async_req=True)
+        >>> thread = api.get_recent_grid_import_export_with_http_info(site_id, user_token, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param object is_use_change_unit: Is Use Change Unit?? (required)
-        :param object id: Device ID (required)
-        :return: InlineResponse2007
+        :param object site_id: (required)
+        :param object user_token: (required)
+        :param object user_type:
+        :return: InlineResponse2009
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['is_use_change_unit', 'id']  # noqa: E501
+        all_params = ['site_id', 'user_token', 'user_type']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -305,28 +307,30 @@ class DefaultApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_signal_device_status" % key
+                    " to method get_recent_grid_import_export" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'is_use_change_unit' is set
-        if ('is_use_change_unit' not in params or
-                params['is_use_change_unit'] is None):
-            raise ValueError("Missing the required parameter `is_use_change_unit` when calling `get_signal_device_status`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `get_signal_device_status`")  # noqa: E501
+        # verify the required parameter 'site_id' is set
+        if ('site_id' not in params or
+                params['site_id'] is None):
+            raise ValueError("Missing the required parameter `site_id` when calling `get_recent_grid_import_export`")  # noqa: E501
+        # verify the required parameter 'user_token' is set
+        if ('user_token' not in params or
+                params['user_token'] is None):
+            raise ValueError("Missing the required parameter `user_token` when calling `get_recent_grid_import_export`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
+        if 'site_id' in params:
+            path_params['siteId'] = params['site_id']  # noqa: E501
 
         query_params = []
-        if 'is_use_change_unit' in params:
-            query_params.append(('isUseChangeUnit', params['is_use_change_unit']))  # noqa: E501
-        if 'id' in params:
-            query_params.append(('id', params['id']))  # noqa: E501
+        if 'user_token' in params:
+            query_params.append(('userToken', params['user_token']))  # noqa: E501
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))  # noqa: E501
 
         header_params = {}
 
@@ -342,14 +346,161 @@ class DefaultApi(object):
         auth_settings = ['token']  # noqa: E501
 
         return self.api_client.call_api(
-            '/ctrller-manager/energystorage/signalDeviceStatus', 'POST',
+            '/hess/api/site/{siteId}/reissueUtilityEnergy', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse2007',  # noqa: E501
+            response_type='InlineResponse2009',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_site_utility_energy(self, site_id, user_token, time_type, start_time, end_time, size, page, **kwargs):  # noqa: E501
+        """Site historical grid import & export in recent 2 years  # noqa: E501
+
+        Query the historical grid energy, total solar generation, grid import, and export energy in the specified time period.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_site_utility_energy(site_id, user_token, time_type, start_time, end_time, size, page, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param object site_id: (required)
+        :param object user_token: (required)
+        :param object time_type: 0: day; 1: week; 2: month; 3: year (required)
+        :param object start_time: (required)
+        :param object end_time: (required)
+        :param object size: (required)
+        :param object page: (required)
+        :param object user_type:
+        :return: InlineResponse2008
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_utility_energy_with_http_info(site_id, user_token, time_type, start_time, end_time, size, page, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_site_utility_energy_with_http_info(site_id, user_token, time_type, start_time, end_time, size, page, **kwargs)  # noqa: E501
+            return data
+
+    def get_site_utility_energy_with_http_info(self, site_id, user_token, time_type, start_time, end_time, size, page, **kwargs):  # noqa: E501
+        """Site historical grid import & export in recent 2 years  # noqa: E501
+
+        Query the historical grid energy, total solar generation, grid import, and export energy in the specified time period.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_site_utility_energy_with_http_info(site_id, user_token, time_type, start_time, end_time, size, page, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param object site_id: (required)
+        :param object user_token: (required)
+        :param object time_type: 0: day; 1: week; 2: month; 3: year (required)
+        :param object start_time: (required)
+        :param object end_time: (required)
+        :param object size: (required)
+        :param object page: (required)
+        :param object user_type:
+        :return: InlineResponse2008
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['site_id', 'user_token', 'time_type', 'start_time', 'end_time', 'size', 'page', 'user_type']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_site_utility_energy" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'site_id' is set
+        if ('site_id' not in params or
+                params['site_id'] is None):
+            raise ValueError("Missing the required parameter `site_id` when calling `get_site_utility_energy`")  # noqa: E501
+        # verify the required parameter 'user_token' is set
+        if ('user_token' not in params or
+                params['user_token'] is None):
+            raise ValueError("Missing the required parameter `user_token` when calling `get_site_utility_energy`")  # noqa: E501
+        # verify the required parameter 'time_type' is set
+        if ('time_type' not in params or
+                params['time_type'] is None):
+            raise ValueError("Missing the required parameter `time_type` when calling `get_site_utility_energy`")  # noqa: E501
+        # verify the required parameter 'start_time' is set
+        if ('start_time' not in params or
+                params['start_time'] is None):
+            raise ValueError("Missing the required parameter `start_time` when calling `get_site_utility_energy`")  # noqa: E501
+        # verify the required parameter 'end_time' is set
+        if ('end_time' not in params or
+                params['end_time'] is None):
+            raise ValueError("Missing the required parameter `end_time` when calling `get_site_utility_energy`")  # noqa: E501
+        # verify the required parameter 'size' is set
+        if ('size' not in params or
+                params['size'] is None):
+            raise ValueError("Missing the required parameter `size` when calling `get_site_utility_energy`")  # noqa: E501
+        # verify the required parameter 'page' is set
+        if ('page' not in params or
+                params['page'] is None):
+            raise ValueError("Missing the required parameter `page` when calling `get_site_utility_energy`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'site_id' in params:
+            path_params['siteId'] = params['site_id']  # noqa: E501
+
+        query_params = []
+        if 'user_token' in params:
+            query_params.append(('userToken', params['user_token']))  # noqa: E501
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))  # noqa: E501
+        if 'time_type' in params:
+            query_params.append(('timeType', params['time_type']))  # noqa: E501
+        if 'start_time' in params:
+            query_params.append(('startTime', params['start_time']))  # noqa: E501
+        if 'end_time' in params:
+            query_params.append(('endTime', params['end_time']))  # noqa: E501
+        if 'size' in params:
+            query_params.append(('size', params['size']))  # noqa: E501
+        if 'page' in params:
+            query_params.append(('page', params['page']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['token']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/utilityEnergy', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='InlineResponse2008',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
