@@ -9,9 +9,7 @@ permissions:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
@@ -30,7 +28,7 @@ jobs:
       uses: mingjun97/file-regex-replace@v1
       with:
         regex: "VERSION = \"(\\d*\\.\\d*\\.\\d*)\""
-        replacement: steps.get-latest-tag.outputs.tag
+        replacement: ${{ steps.get-latest-tag.outputs.tag }}
         include: setup.py
     - name: Build package
       run: python -m build
