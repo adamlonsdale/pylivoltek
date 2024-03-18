@@ -266,7 +266,7 @@ class DefaultApi(object):
         :param object user_token: User token (required)
         :param object site_id: Site ID (required)
         :param object user_type: User Type
-        :return: InlineResponse2008
+        :return: GridImportExportApiResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -289,7 +289,7 @@ class DefaultApi(object):
         :param object user_token: User token (required)
         :param object site_id: Site ID (required)
         :param object user_type: User Type
-        :return: InlineResponse2008
+        :return: GridImportExportApiResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -351,7 +351,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse2008',  # noqa: E501
+            response_type='GridImportExportApiResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
