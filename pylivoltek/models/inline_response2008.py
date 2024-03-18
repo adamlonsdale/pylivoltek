@@ -28,55 +28,58 @@ class InlineResponse2008(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data': 'InlineResponse2008Data',
+        'code': 'object',
         'message': 'object',
-        'msg_code': 'object'
+        'data': 'object'
     }
 
     attribute_map = {
-        'data': 'data',
+        'code': 'code',
         'message': 'message',
-        'msg_code': 'msgCode'
+        'data': 'data'
     }
 
-    def __init__(self, data=None, message=None, msg_code=None):  # noqa: E501
+    def __init__(self, code=None, message=None, data=None):  # noqa: E501
         """InlineResponse2008 - a model defined in Swagger"""  # noqa: E501
-        self._data = None
+        self._code = None
         self._message = None
-        self._msg_code = None
+        self._data = None
         self.discriminator = None
-        if data is not None:
-            self.data = data
+        if code is not None:
+            self.code = code
         if message is not None:
             self.message = message
-        if msg_code is not None:
-            self.msg_code = msg_code
+        if data is not None:
+            self.data = data
 
     @property
-    def data(self):
-        """Gets the data of this InlineResponse2008.  # noqa: E501
+    def code(self):
+        """Gets the code of this InlineResponse2008.  # noqa: E501
 
+        Message Code  # noqa: E501
 
-        :return: The data of this InlineResponse2008.  # noqa: E501
-        :rtype: InlineResponse2008Data
+        :return: The code of this InlineResponse2008.  # noqa: E501
+        :rtype: object
         """
-        return self._data
+        return self._code
 
-    @data.setter
-    def data(self, data):
-        """Sets the data of this InlineResponse2008.
+    @code.setter
+    def code(self, code):
+        """Sets the code of this InlineResponse2008.
 
+        Message Code  # noqa: E501
 
-        :param data: The data of this InlineResponse2008.  # noqa: E501
-        :type: InlineResponse2008Data
+        :param code: The code of this InlineResponse2008.  # noqa: E501
+        :type: object
         """
 
-        self._data = data
+        self._code = code
 
     @property
     def message(self):
         """Gets the message of this InlineResponse2008.  # noqa: E501
 
+        HTTP/HTTPS response code  # noqa: E501
 
         :return: The message of this InlineResponse2008.  # noqa: E501
         :rtype: object
@@ -87,6 +90,7 @@ class InlineResponse2008(object):
     def message(self, message):
         """Sets the message of this InlineResponse2008.
 
+        HTTP/HTTPS response code  # noqa: E501
 
         :param message: The message of this InlineResponse2008.  # noqa: E501
         :type: object
@@ -95,25 +99,27 @@ class InlineResponse2008(object):
         self._message = message
 
     @property
-    def msg_code(self):
-        """Gets the msg_code of this InlineResponse2008.  # noqa: E501
+    def data(self):
+        """Gets the data of this InlineResponse2008.  # noqa: E501
 
+        Energy Storage Overview  # noqa: E501
 
-        :return: The msg_code of this InlineResponse2008.  # noqa: E501
+        :return: The data of this InlineResponse2008.  # noqa: E501
         :rtype: object
         """
-        return self._msg_code
+        return self._data
 
-    @msg_code.setter
-    def msg_code(self, msg_code):
-        """Sets the msg_code of this InlineResponse2008.
+    @data.setter
+    def data(self, data):
+        """Sets the data of this InlineResponse2008.
 
+        Energy Storage Overview  # noqa: E501
 
-        :param msg_code: The msg_code of this InlineResponse2008.  # noqa: E501
+        :param data: The data of this InlineResponse2008.  # noqa: E501
         :type: object
         """
 
-        self._msg_code = msg_code
+        self._data = data
 
     def to_dict(self):
         """Returns the model properties as a dict"""

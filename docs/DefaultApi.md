@@ -6,8 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_device_details**](DefaultApi.md#get_device_details) | **GET** /hess/api/device/{siteId}/{serialNumber}/details | Device Details
 [**get_energy_storage**](DefaultApi.md#get_energy_storage) | **GET** /hess/api/site/{siteId}/ESS | Energy Storage Information
-[**get_recent_grid_import_export**](DefaultApi.md#get_recent_grid_import_export) | **GET** /hess/api/site/{siteId}/reissueUtilityEnergy | Site historical grid import &amp; export in recent 3 days
-[**get_site_utility_energy**](DefaultApi.md#get_site_utility_energy) | **GET** /hess/api/site/{siteId}/utilityEnergy | Site historical grid import &amp; export in recent 2 years
+[**get_recent_energy_import_export**](DefaultApi.md#get_recent_energy_import_export) | **GET** /hess/api/site/{siteId}/reissueUtilityEnergy | Get grid import/export history for the last 3 days.
 [**hess_api_device_device_id_real_electricity_get**](DefaultApi.md#hess_api_device_device_id_real_electricity_get) | **GET** /hess/api/device/{deviceId}/realElectricity | Device Generation or Consumption
 [**hess_api_device_site_id_list_get**](DefaultApi.md#hess_api_device_site_id_list_get) | **GET** /hess/api/device/{siteId}/list | Device List
 [**hess_api_login_post**](DefaultApi.md#hess_api_login_post) | **POST** /hess/api/login | API User Login and Get Token
@@ -123,12 +122,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_recent_grid_import_export**
-> InlineResponse2009 get_recent_grid_import_export(site_id, user_token, user_type=user_type)
+# **get_recent_energy_import_export**
+> InlineResponse2008 get_recent_energy_import_export(user_token, site_id, user_type=user_type)
 
-Site historical grid import & export in recent 3 days
-
-Query the power grid electricity in the past three days of the specified power station (Wh).
+Get grid import/export history for the last 3 days.
 
 ### Example
 ```python
@@ -141,88 +138,25 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = pylivoltek.DefaultApi(pylivoltek.ApiClient(configuration))
-site_id = NULL # object | 
-user_token = NULL # object | 
-user_type = NULL # object |  (optional)
+user_token = NULL # object | User token
+site_id = NULL # object | Site ID
+user_type = NULL # object | User Type (optional)
 
 try:
-    # Site historical grid import & export in recent 3 days
-    api_response = api_instance.get_recent_grid_import_export(site_id, user_token, user_type=user_type)
+    # Get grid import/export history for the last 3 days.
+    api_response = api_instance.get_recent_energy_import_export(user_token, site_id, user_type=user_type)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->get_recent_grid_import_export: %s\n" % e)
+    print("Exception when calling DefaultApi->get_recent_energy_import_export: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **site_id** | [**object**](.md)|  | 
- **user_token** | [**object**](.md)|  | 
- **user_type** | [**object**](.md)|  | [optional] 
-
-### Return type
-
-[**InlineResponse2009**](InlineResponse2009.md)
-
-### Authorization
-
-[token](../README.md#token)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_site_utility_energy**
-> InlineResponse2008 get_site_utility_energy(site_id, user_token, time_type, start_time, end_time, size, page, user_type=user_type)
-
-Site historical grid import & export in recent 2 years
-
-Query the historical grid energy, total solar generation, grid import, and export energy in the specified time period.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import pylivoltek
-from pylivoltek.rest import ApiException
-from pprint import pprint
-
-
-# create an instance of the API class
-api_instance = pylivoltek.DefaultApi(pylivoltek.ApiClient(configuration))
-site_id = NULL # object | 
-user_token = NULL # object | 
-time_type = NULL # object | 0: day; 1: week; 2: month; 3: year
-start_time = NULL # object | 
-end_time = NULL # object | 
-size = NULL # object | 
-page = NULL # object | 
-user_type = NULL # object |  (optional)
-
-try:
-    # Site historical grid import & export in recent 2 years
-    api_response = api_instance.get_site_utility_energy(site_id, user_token, time_type, start_time, end_time, size, page, user_type=user_type)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->get_site_utility_energy: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **site_id** | [**object**](.md)|  | 
- **user_token** | [**object**](.md)|  | 
- **time_type** | [**object**](.md)| 0: day; 1: week; 2: month; 3: year | 
- **start_time** | [**object**](.md)|  | 
- **end_time** | [**object**](.md)|  | 
- **size** | [**object**](.md)|  | 
- **page** | [**object**](.md)|  | 
- **user_type** | [**object**](.md)|  | [optional] 
+ **user_token** | [**object**](.md)| User token | 
+ **site_id** | [**object**](.md)| Site ID | 
+ **user_type** | [**object**](.md)| User Type | [optional] 
 
 ### Return type
 

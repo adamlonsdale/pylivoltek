@@ -77,35 +77,16 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = pylivoltek.DefaultApi(pylivoltek.ApiClient(configuration))
-site_id = NULL # object | 
-user_token = NULL # object | 
-user_type = NULL # object |  (optional)
+user_token = NULL # object | User token
+site_id = NULL # object | Site ID
+user_type = NULL # object | User Type (optional)
 
 try:
-    # Site historical grid import & export in recent 3 days
-    api_response = api_instance.get_recent_grid_import_export(site_id, user_token, user_type=user_type)
+    # Get grid import/export history for the last 3 days.
+    api_response = api_instance.get_recent_energy_import_export(user_token, site_id, user_type=user_type)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->get_recent_grid_import_export: %s\n" % e)
-
-
-# create an instance of the API class
-api_instance = pylivoltek.DefaultApi(pylivoltek.ApiClient(configuration))
-site_id = NULL # object | 
-user_token = NULL # object | 
-time_type = NULL # object | 0: day; 1: week; 2: month; 3: year
-start_time = NULL # object | 
-end_time = NULL # object | 
-size = NULL # object | 
-page = NULL # object | 
-user_type = NULL # object |  (optional)
-
-try:
-    # Site historical grid import & export in recent 2 years
-    api_response = api_instance.get_site_utility_energy(site_id, user_token, time_type, start_time, end_time, size, page, user_type=user_type)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->get_site_utility_energy: %s\n" % e)
+    print("Exception when calling DefaultApi->get_recent_energy_import_export: %s\n" % e)
 
 
 # create an instance of the API class
@@ -202,8 +183,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**get_device_details**](docs/DefaultApi.md#get_device_details) | **GET** /hess/api/device/{siteId}/{serialNumber}/details | Device Details
 *DefaultApi* | [**get_energy_storage**](docs/DefaultApi.md#get_energy_storage) | **GET** /hess/api/site/{siteId}/ESS | Energy Storage Information
-*DefaultApi* | [**get_recent_grid_import_export**](docs/DefaultApi.md#get_recent_grid_import_export) | **GET** /hess/api/site/{siteId}/reissueUtilityEnergy | Site historical grid import &amp; export in recent 3 days
-*DefaultApi* | [**get_site_utility_energy**](docs/DefaultApi.md#get_site_utility_energy) | **GET** /hess/api/site/{siteId}/utilityEnergy | Site historical grid import &amp; export in recent 2 years
+*DefaultApi* | [**get_recent_energy_import_export**](docs/DefaultApi.md#get_recent_energy_import_export) | **GET** /hess/api/site/{siteId}/reissueUtilityEnergy | Get grid import/export history for the last 3 days.
 *DefaultApi* | [**hess_api_device_device_id_real_electricity_get**](docs/DefaultApi.md#hess_api_device_device_id_real_electricity_get) | **GET** /hess/api/device/{deviceId}/realElectricity | Device Generation or Consumption
 *DefaultApi* | [**hess_api_device_site_id_list_get**](docs/DefaultApi.md#hess_api_device_site_id_list_get) | **GET** /hess/api/device/{siteId}/list | Device List
 *DefaultApi* | [**hess_api_login_post**](docs/DefaultApi.md#hess_api_login_post) | **POST** /hess/api/login | API User Login and Get Token
@@ -222,7 +202,7 @@ Class | Method | HTTP request | Description
  - [EnergyStoreBatteryType](docs/EnergyStoreBatteryType.md)
  - [EnergyStoreHistoryMap](docs/EnergyStoreHistoryMap.md)
  - [EnergyStoreHistoryMapItem](docs/EnergyStoreHistoryMapItem.md)
- - [HistoryItem](docs/HistoryItem.md)
+ - [GridImportExportHistory](docs/GridImportExportHistory.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse2001Data](docs/InlineResponse2001Data.md)
@@ -233,10 +213,6 @@ Class | Method | HTTP request | Description
  - [InlineResponse2006](docs/InlineResponse2006.md)
  - [InlineResponse2007](docs/InlineResponse2007.md)
  - [InlineResponse2008](docs/InlineResponse2008.md)
- - [InlineResponse2008Data](docs/InlineResponse2008Data.md)
- - [InlineResponse2008DataEtotalToGrid](docs/InlineResponse2008DataEtotalToGrid.md)
- - [InlineResponse2009](docs/InlineResponse2009.md)
- - [RecentGridImportExport](docs/RecentGridImportExport.md)
  - [Site](docs/Site.md)
  - [SiteList](docs/SiteList.md)
  - [SiteOverview](docs/SiteOverview.md)

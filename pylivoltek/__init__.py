@@ -29,7 +29,7 @@ from pylivoltek.models.energy_store import EnergyStore
 from pylivoltek.models.energy_store_battery_type import EnergyStoreBatteryType
 from pylivoltek.models.energy_store_history_map import EnergyStoreHistoryMap
 from pylivoltek.models.energy_store_history_map_item import EnergyStoreHistoryMapItem
-from pylivoltek.models.history_item import HistoryItem
+from pylivoltek.models.grid_import_export_history import GridImportExportHistory
 from pylivoltek.models.inline_response200 import InlineResponse200
 from pylivoltek.models.inline_response2001 import InlineResponse2001
 from pylivoltek.models.inline_response2001_data import InlineResponse2001Data
@@ -40,10 +40,6 @@ from pylivoltek.models.inline_response2005 import InlineResponse2005
 from pylivoltek.models.inline_response2006 import InlineResponse2006
 from pylivoltek.models.inline_response2007 import InlineResponse2007
 from pylivoltek.models.inline_response2008 import InlineResponse2008
-from pylivoltek.models.inline_response2008_data import InlineResponse2008Data
-from pylivoltek.models.inline_response2008_data_etotal_to_grid import InlineResponse2008DataEtotalToGrid
-from pylivoltek.models.inline_response2009 import InlineResponse2009
-from pylivoltek.models.recent_grid_import_export import RecentGridImportExport
 from pylivoltek.models.site import Site
 from pylivoltek.models.site_list import SiteList
 from pylivoltek.models.site_overview import SiteOverview

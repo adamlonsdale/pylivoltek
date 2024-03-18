@@ -1,11 +1,12 @@
-# InlineResponse2008
+# GridImportExportHistory
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **object** | Message Code | [optional] 
-**message** | **object** | HTTP/HTTPS response code | [optional] 
-**data** | **object** | Energy Storage Overview | [optional] 
+**site_id** | **object** | Site ID | [optional] 
+**ts** | **object** | Timestamp | [optional] 
+**positive** | **object** | Grid Import | [optional] 
+**negative** | **object** | Grid Export | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
