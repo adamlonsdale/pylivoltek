@@ -92,6 +92,20 @@ except ApiException as e:
 # create an instance of the API class
 api_instance = pylivoltek.DefaultApi(pylivoltek.ApiClient(configuration))
 user_token = NULL # object | User token
+site_id = NULL # object | Site ID
+user_type = NULL # object | User Type (optional)
+
+try:
+    # Get solar generation history for the last 3 days.
+    api_response = api_instance.get_recent_solar_generated_energy(user_token, site_id, user_type=user_type)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_recent_solar_generated_energy: %s\n" % e)
+
+
+# create an instance of the API class
+api_instance = pylivoltek.DefaultApi(pylivoltek.ApiClient(configuration))
+user_token = NULL # object | User token
 device_id = NULL # object | Device ID
 user_type = NULL # object | User Type (optional)
 
@@ -184,6 +198,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_device_details**](docs/DefaultApi.md#get_device_details) | **GET** /hess/api/device/{siteId}/{serialNumber}/details | Device Details
 *DefaultApi* | [**get_energy_storage**](docs/DefaultApi.md#get_energy_storage) | **GET** /hess/api/site/{siteId}/ESS | Energy Storage Information
 *DefaultApi* | [**get_recent_energy_import_export**](docs/DefaultApi.md#get_recent_energy_import_export) | **GET** /hess/api/site/{siteId}/reissueUtilityEnergy | Get grid import/export history for the last 3 days.
+*DefaultApi* | [**get_recent_solar_generated_energy**](docs/DefaultApi.md#get_recent_solar_generated_energy) | **GET** /hess/api/site/{siteId}/reissueSolarEnergy | Get solar generation history for the last 3 days.
 *DefaultApi* | [**hess_api_device_device_id_real_electricity_get**](docs/DefaultApi.md#hess_api_device_device_id_real_electricity_get) | **GET** /hess/api/device/{deviceId}/realElectricity | Device Generation or Consumption
 *DefaultApi* | [**hess_api_device_site_id_list_get**](docs/DefaultApi.md#hess_api_device_site_id_list_get) | **GET** /hess/api/device/{siteId}/list | Device List
 *DefaultApi* | [**hess_api_login_post**](docs/DefaultApi.md#hess_api_login_post) | **POST** /hess/api/login | API User Login and Get Token
@@ -194,6 +209,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [ApiLoginBody](docs/ApiLoginBody.md)
+ - [ApiResponse](docs/ApiResponse.md)
  - [CurrentPowerFlow](docs/CurrentPowerFlow.md)
  - [Device](docs/Device.md)
  - [DeviceDetails](docs/DeviceDetails.md)
@@ -202,7 +218,9 @@ Class | Method | HTTP request | Description
  - [EnergyStoreBatteryType](docs/EnergyStoreBatteryType.md)
  - [EnergyStoreHistoryMap](docs/EnergyStoreHistoryMap.md)
  - [EnergyStoreHistoryMapItem](docs/EnergyStoreHistoryMapItem.md)
- - [GridImportExportHistory](docs/GridImportExportHistory.md)
+ - [GridImportExport](docs/GridImportExport.md)
+ - [GridImportExportApiResponse](docs/GridImportExportApiResponse.md)
+ - [GridImportExportList](docs/GridImportExportList.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse2001Data](docs/InlineResponse2001Data.md)
@@ -212,10 +230,12 @@ Class | Method | HTTP request | Description
  - [InlineResponse2005](docs/InlineResponse2005.md)
  - [InlineResponse2006](docs/InlineResponse2006.md)
  - [InlineResponse2007](docs/InlineResponse2007.md)
- - [InlineResponse2008](docs/InlineResponse2008.md)
  - [Site](docs/Site.md)
  - [SiteList](docs/SiteList.md)
  - [SiteOverview](docs/SiteOverview.md)
+ - [SolarGeneration](docs/SolarGeneration.md)
+ - [SolarGenerationApiResponse](docs/SolarGenerationApiResponse.md)
+ - [SolarGenerationtList](docs/SolarGenerationtList.md)
 
 ## Documentation For Authorization
 
