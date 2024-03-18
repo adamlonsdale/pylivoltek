@@ -26,6 +26,7 @@ from pylivoltek.models.energy_store_history_map import EnergyStoreHistoryMap
 from pylivoltek.models.energy_store_history_map_item import EnergyStoreHistoryMapItem
 from pylivoltek.models.grid_import_export import GridImportExport
 from pylivoltek.models.grid_import_export_api_response import GridImportExportApiResponse
+from pylivoltek.models.grid_import_export_list import GridImportExportList
 from pylivoltek.models.inline_response200 import InlineResponse200
 from pylivoltek.models.inline_response2001 import InlineResponse2001
 from pylivoltek.models.inline_response2001_data import InlineResponse2001Data
