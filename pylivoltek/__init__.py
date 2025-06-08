@@ -47,4 +47,4 @@ from pylivoltek.models.site_list import SiteList
 from pylivoltek.models.site_overview import SiteOverview
 from pylivoltek.models.solar_generation import SolarGeneration
 from pylivoltek.models.solar_generation_api_response import SolarGenerationApiResponse
-from pylivoltek.models.solar_generationt_list import SolarGenerationtList
+from pylivoltek.models.solar_generation_list import SolarGenerationList

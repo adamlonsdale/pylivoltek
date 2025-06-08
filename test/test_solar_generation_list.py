@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.solar_generationt_list import SolarGenerationtList  # noqa: E501
+from pylivoltek.models.solar_generation_list import SolarGenerationList  # noqa: E501
 from pylivoltek.rest import ApiException
 
 
-class TestSolarGenerationtList(unittest.TestCase):
-    """SolarGenerationtList unit test stubs"""
+class TestSolarGenerationList(unittest.TestCase):
+    """SolarGenerationList unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestSolarGenerationtList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testSolarGenerationtList(self):
-        """Test SolarGenerationtList"""
+    def testSolarGenerationList(self):
+        """Test SolarGenerationList"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.solar_generationt_list.SolarGenerationtList()  # noqa: E501
+        # model = pylivoltek.models.solar_generation_list.SolarGenerationList()  # noqa: E501
         pass
 
 

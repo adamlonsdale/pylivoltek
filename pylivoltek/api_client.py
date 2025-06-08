@@ -266,7 +266,7 @@ class ApiClient(object):
         elif klass == datetime.date:
             return self.__deserialize_date(data)
         elif klass == datetime.datetime:
-            return self.__deserialize_datatime(data)
+            return self.__deserialize_datetime(data)
         else:
             return self.__deserialize_model(data, klass)
 
@@ -572,7 +572,7 @@ class ApiClient(object):
                 reason="Failed to parse `{0}` as date object".format(string)
             )
 
-    def __deserialize_datatime(self, string):
+    def __deserialize_datetime(self, string):
         """Deserializes string to datetime.
 
         The string should be in iso8601 datetime format.
@@ -595,7 +595,7 @@ class ApiClient(object):
             )
 
     def __hasattr(self, object, name):
-            return name in object.__class__.__dict__
+        return name in object.__class__.__dict__
 
     def __deserialize_model(self, data, klass):
         """Deserializes list or dict to model.
