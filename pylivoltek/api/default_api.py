@@ -44,7 +44,7 @@ class DefaultApi(object):
         :param async_req bool
         :param object user_token: User token (required)
         :param object site_id: Site ID (required)
-        :param object serial_number: Site ID (required)
+        :param object serial_number: Serial number (required)
         :param object user_type: User Type
         :return: InlineResponse2005
                  If the method is called asynchronously,
@@ -69,7 +69,7 @@ class DefaultApi(object):
         :param async_req bool
         :param object user_token: User token (required)
         :param object site_id: Site ID (required)
-        :param object serial_number: Site ID (required)
+        :param object serial_number: Serial number (required)
         :param object user_type: User Type
         :return: InlineResponse2005
                  If the method is called asynchronously,

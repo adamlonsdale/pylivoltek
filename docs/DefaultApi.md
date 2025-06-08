@@ -35,7 +35,7 @@ from pprint import pprint
 api_instance = pylivoltek.DefaultApi(pylivoltek.ApiClient(configuration))
 user_token = NULL # object | User token
 site_id = NULL # object | Site ID
-serial_number = NULL # object | Site ID
+serial_number = NULL # object | Serial number
 user_type = NULL # object | User Type (optional)
 
 try:
