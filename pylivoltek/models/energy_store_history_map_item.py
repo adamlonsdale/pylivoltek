@@ -30,7 +30,7 @@ class EnergyStoreHistoryMapItem(object):
     swagger_types = {
         'energy_power': 'object',
         'energy_soc': 'object',
-        'energy_volage': 'object',
+        'energy_voltage': 'object',
         'charge': 'object',
         'discharge': 'object',
         'time': 'object'
@@ -39,17 +39,17 @@ class EnergyStoreHistoryMapItem(object):
     attribute_map = {
         'energy_power': 'energyPower',
         'energy_soc': 'energySoc',
-        'energy_volage': 'energyVolage',
+        'energy_voltage': 'energyVoltage',
         'charge': 'charge',
         'discharge': 'discharge',
         'time': 'time'
     }
 
-    def __init__(self, energy_power=None, energy_soc=None, energy_volage=None, charge=None, discharge=None, time=None):  # noqa: E501
+    def __init__(self, energy_power=None, energy_soc=None, energy_voltage=None, charge=None, discharge=None, time=None):  # noqa: E501
         """EnergyStoreHistoryMapItem - a model defined in Swagger"""  # noqa: E501
         self._energy_power = None
         self._energy_soc = None
-        self._energy_volage = None
+        self._energy_voltage = None
         self._charge = None
         self._discharge = None
         self._time = None
@@ -58,8 +58,8 @@ class EnergyStoreHistoryMapItem(object):
             self.energy_power = energy_power
         if energy_soc is not None:
             self.energy_soc = energy_soc
-        if energy_volage is not None:
-            self.energy_volage = energy_volage
+        if energy_voltage is not None:
+            self.energy_voltage = energy_voltage
         if charge is not None:
             self.charge = charge
         if discharge is not None:
@@ -114,27 +114,27 @@ class EnergyStoreHistoryMapItem(object):
         self._energy_soc = energy_soc
 
     @property
-    def energy_volage(self):
-        """Gets the energy_volage of this EnergyStoreHistoryMapItem.  # noqa: E501
+    def energy_voltage(self):
+        """Gets the energy_voltage of this EnergyStoreHistoryMapItem.  # noqa: E501
 
         Battery voltage  # noqa: E501
 
-        :return: The energy_volage of this EnergyStoreHistoryMapItem.  # noqa: E501
+        :return: The energy_voltage of this EnergyStoreHistoryMapItem.  # noqa: E501
         :rtype: object
         """
-        return self._energy_volage
+        return self._energy_voltage
 
-    @energy_volage.setter
-    def energy_volage(self, energy_volage):
-        """Sets the energy_volage of this EnergyStoreHistoryMapItem.
+    @energy_voltage.setter
+    def energy_voltage(self, energy_voltage):
+        """Sets the energy_voltage of this EnergyStoreHistoryMapItem.
 
         Battery voltage  # noqa: E501
 
-        :param energy_volage: The energy_volage of this EnergyStoreHistoryMapItem.  # noqa: E501
+        :param energy_voltage: The energy_voltage of this EnergyStoreHistoryMapItem.  # noqa: E501
         :type: object
         """
 
-        self._energy_volage = energy_volage
+        self._energy_voltage = energy_voltage
 
     @property
     def charge(self):
