@@ -235,7 +235,7 @@ Class | Method | HTTP request | Description
  - [SiteOverview](docs/SiteOverview.md)
  - [SolarGeneration](docs/SolarGeneration.md)
  - [SolarGenerationApiResponse](docs/SolarGenerationApiResponse.md)
- - [SolarGenerationtList](docs/SolarGenerationtList.md)
+ - [SolarGenerationList](docs/SolarGenerationList.md)
 
 ## Documentation For Authorization
 

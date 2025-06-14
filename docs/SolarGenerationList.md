@@ -1,4 +1,4 @@
-# SolarGenerationtList
+# SolarGenerationList
 
 ## Properties
 Name | Type | Description | Notes

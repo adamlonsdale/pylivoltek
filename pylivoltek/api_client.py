@@ -599,7 +599,7 @@ class ApiClient(object):
         return self.__deserialize_datetime(string)
 
     def __hasattr(self, object, name):
-            return name in object.__class__.__dict__
+        return name in object.__class__.__dict__
 
     def __deserialize_model(self, data, klass):
         """Deserializes list or dict to model.
