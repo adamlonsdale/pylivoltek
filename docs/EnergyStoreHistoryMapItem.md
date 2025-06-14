@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **energy_power** | **object** | Battery power | [optional] 
 **energy_soc** | **object** | Battery SoC | [optional] 
-**energy_volage** | **object** | Battery voltage | [optional] 
+**energyVoltage** | **object** | Battery voltage | [optional]
 **charge** | **object** | Charging energy | [optional] 
 **discharge** | **object** | Discharging energy | [optional] 
 **time** | **object** | Timestamp (ms) | [optional] 
