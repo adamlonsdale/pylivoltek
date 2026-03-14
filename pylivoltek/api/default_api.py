@@ -1007,6 +1007,893 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def get_inverter_relation(self, site_id, **kwargs):  # noqa: E501
+        """Get inverter to PV string relations for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_inverter_relation_with_http_info(site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_inverter_relation_with_http_info(site_id, **kwargs)  # noqa: E501
+
+    def get_inverter_relation_with_http_info(self, site_id, **kwargs):  # noqa: E501
+        all_params = ['site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_inverter_relation" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        if 'site_id' not in params or params['site_id'] is None:
+            raise ValueError("Missing the required parameter `site_id` when calling `get_inverter_relation`")  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = []
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {}
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        return self.api_client.call_api(
+            '/hess/api/device/{siteId}/relation', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='list[object]',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_device_alarm_events(self, user_token, site_id, serial_number, start_time, end_time, **kwargs):  # noqa: E501
+        """Get alarm events for a specific device."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_device_alarm_events_with_http_info(user_token, site_id, serial_number, start_time, end_time, **kwargs)  # noqa: E501
+        else:
+            return self.get_device_alarm_events_with_http_info(user_token, site_id, serial_number, start_time, end_time, **kwargs)  # noqa: E501
+
+    def get_device_alarm_events_with_http_info(self, user_token, site_id, serial_number, start_time, end_time, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'serial_number', 'start_time', 'end_time', 'page', 'size', 'lang', 'user_type']  # noqa: E501
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_device_alarm_events" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id', 'serial_number', 'start_time', 'end_time']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_device_alarm_events`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id'], 'serialNumber': params['serial_number']}
+        query_params = [
+            ('userToken', params['user_token']),
+            ('startTime', params['start_time']),
+            ('endTime', params['end_time'])
+        ]
+        if 'page' in params:
+            query_params.append(('page', params['page']))
+        if 'size' in params:
+            query_params.append(('size', params['size']))
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {}
+        if 'lang' in params:
+            header_params['lang'] = params['lang']
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        return self.api_client.call_api(
+            '/hess/api/device/{siteId}/{serialNumber}/alarm', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='object',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_device_fault_alarm_for_day(self, user_token, site_id, serial_number, date_time, **kwargs):  # noqa: E501
+        """Get fault alarms for a device on a single day."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_device_fault_alarm_for_day_with_http_info(user_token, site_id, serial_number, date_time, **kwargs)  # noqa: E501
+        else:
+            return self.get_device_fault_alarm_for_day_with_http_info(user_token, site_id, serial_number, date_time, **kwargs)  # noqa: E501
+
+    def get_device_fault_alarm_for_day_with_http_info(self, user_token, site_id, serial_number, date_time, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'serial_number', 'date_time', 'page', 'size', 'lang', 'user_type']  # noqa: E501
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_device_fault_alarm_for_day" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id', 'serial_number', 'date_time']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_device_fault_alarm_for_day`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id'], 'serialNumber': params['serial_number']}
+        query_params = [
+            ('userToken', params['user_token']),
+            ('dateTime', params['date_time'])
+        ]
+        if 'page' in params:
+            query_params.append(('page', params['page']))
+        if 'size' in params:
+            query_params.append(('size', params['size']))
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {}
+        if 'lang' in params:
+            header_params['lang'] = params['lang']
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json'])  # noqa: E501
+
+        return self.api_client.call_api(
+            '/hess/api/device/{siteId}/{serialNumber}/oneDayFaultAlarm', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='object',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_device_real_time_parameters(self, user_token, site_id, serial_number, **kwargs):  # noqa: E501
+        """Get real-time technical parameters for a device."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_device_real_time_parameters_with_http_info(user_token, site_id, serial_number, **kwargs)  # noqa: E501
+        else:
+            return self.get_device_real_time_parameters_with_http_info(user_token, site_id, serial_number, **kwargs)  # noqa: E501
+
+    def get_device_real_time_parameters_with_http_info(self, user_token, site_id, serial_number, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'serial_number', 'start_time', 'end_time', 'user_type']  # noqa: E501
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_device_real_time_parameters" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id', 'serial_number']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_device_real_time_parameters`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id'], 'serialNumber': params['serial_number']}
+        query_params = [('userToken', params['user_token'])]
+        if 'start_time' in params:
+            query_params.append(('startTime', params['start_time']))
+        if 'end_time' in params:
+            query_params.append(('endTime', params['end_time']))
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/device/{siteId}/{serialNumber}/realTime', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='dict(str, list[object])',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_device_realtime_details(self, user_token, site_id, serial_number, **kwargs):  # noqa: E501
+        """Get real-time device details."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_device_realtime_details_with_http_info(user_token, site_id, serial_number, **kwargs)  # noqa: E501
+        else:
+            return self.get_device_realtime_details_with_http_info(user_token, site_id, serial_number, **kwargs)  # noqa: E501
+
+    def get_device_realtime_details_with_http_info(self, user_token, site_id, serial_number, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'serial_number', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_device_realtime_details" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id', 'serial_number']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_device_realtime_details`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id'], 'serialNumber': params['serial_number']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/device/{siteId}/{serialNumber}/realdetails', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='object',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_historical_power_flow(self, user_token, site_id, start_time, end_time, **kwargs):  # noqa: E501
+        """Get historical power flow data for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_historical_power_flow_with_http_info(user_token, site_id, start_time, end_time, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_historical_power_flow_with_http_info(user_token, site_id, start_time, end_time, **kwargs)  # noqa: E501
+
+    def get_site_historical_power_flow_with_http_info(self, user_token, site_id, start_time, end_time, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'start_time', 'end_time', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_historical_power_flow" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id', 'start_time', 'end_time']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_historical_power_flow`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [
+            ('userToken', params['user_token']),
+            ('startTime', params['start_time']),
+            ('endTime', params['end_time'])
+        ]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/HisPowerflow', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='dict(str, list[object])',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_alarm_data(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get site alarm events."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_alarm_data_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_alarm_data_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_site_alarm_data_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'page', 'size', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_alarm_data" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_alarm_data`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'page' in params:
+            query_params.append(('page', params['page']))
+        if 'size' in params:
+            query_params.append(('size', params['size']))
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/alarm', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='object',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_details(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get detailed information for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_details_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_details_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_site_details_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_details" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_details`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/details', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='object',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_power_history(self, user_token, site_id, start_time, end_time, **kwargs):  # noqa: E501
+        """Get historical site power data."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_power_history_with_http_info(user_token, site_id, start_time, end_time, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_power_history_with_http_info(user_token, site_id, start_time, end_time, **kwargs)  # noqa: E501
+
+    def get_site_power_history_with_http_info(self, user_token, site_id, start_time, end_time, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'start_time', 'end_time', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_power_history" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id', 'start_time', 'end_time']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_power_history`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [
+            ('userToken', params['user_token']),
+            ('startTime', params['start_time']),
+            ('endTime', params['end_time'])
+        ]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/power', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='dict(str, list[object])',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_device_real_electricity(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get generation or consumption totals for devices within a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_device_real_electricity_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_device_real_electricity_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_site_device_real_electricity_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_device_real_electricity" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_device_real_electricity`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/device/{siteId}/realelectricity', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='list[object]',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_reissued_solar_energy(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get reissued solar generation values for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_reissued_solar_energy_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_reissued_solar_energy_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_reissued_solar_energy_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_reissued_solar_energy" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_reissued_solar_energy`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/reissueSolarEnergy', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='list[SolarGeneration]',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_reissued_utility_energy(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get reissued grid import/export values for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_reissued_utility_energy_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_reissued_utility_energy_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_reissued_utility_energy_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_reissued_utility_energy" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_reissued_utility_energy`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/reissueUtilityEnergy', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='list[GridImportExport]',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_installer(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get installer information for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_installer_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_installer_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_site_installer_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_installer" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_installer`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/siteInstaller', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='object',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_power_meter(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get power meter data for a site when available."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_power_meter_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_power_meter_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_site_power_meter_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_power_meter" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_power_meter`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/powerMeter', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='str',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_image(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get the site image URL or identifier when available."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_image_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_image_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_site_image_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_image" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_image`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/siteIamge', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='str',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_owner(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get owner information for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_owner_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_owner_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_site_owner_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_owner" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_owner`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/siteOwner', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='object',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_social_contribution(self, user_token, site_id, **kwargs):  # noqa: E501
+        """Get social contribution data for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_social_contribution_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_social_contribution_with_http_info(user_token, site_id, **kwargs)  # noqa: E501
+
+    def get_site_social_contribution_with_http_info(self, user_token, site_id, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'user_type']
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_social_contribution" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_social_contribution`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [('userToken', params['user_token'])]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/socialContr', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='object',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_solar_energy_history(self, user_token, site_id, start_time, end_time, page, size, time_type, **kwargs):  # noqa: E501
+        """Get historical solar energy data for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_solar_energy_history_with_http_info(user_token, site_id, start_time, end_time, page, size, time_type, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_solar_energy_history_with_http_info(user_token, site_id, start_time, end_time, page, size, time_type, **kwargs)  # noqa: E501
+
+    def get_site_solar_energy_history_with_http_info(self, user_token, site_id, start_time, end_time, page, size, time_type, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'start_time', 'end_time', 'page', 'size', 'time_type', 'user_type']  # noqa: E501
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_solar_energy_history" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id', 'start_time', 'end_time', 'page', 'size', 'time_type']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_solar_energy_history`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [
+            ('userToken', params['user_token']),
+            ('startTime', params['start_time']),
+            ('endTime', params['end_time']),
+            ('page', params['page']),
+            ('size', params['size']),
+            ('timeType', params['time_type'])
+        ]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/solarEnergy', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='list[SolarGeneration]',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
+    def get_site_utility_energy_history(self, user_token, site_id, start_time, end_time, page, size, time_type, **kwargs):  # noqa: E501
+        """Get historical grid import/export data for a site."""  # noqa: E501
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_site_utility_energy_history_with_http_info(user_token, site_id, start_time, end_time, page, size, time_type, **kwargs)  # noqa: E501
+        else:
+            return self.get_site_utility_energy_history_with_http_info(user_token, site_id, start_time, end_time, page, size, time_type, **kwargs)  # noqa: E501
+
+    def get_site_utility_energy_history_with_http_info(self, user_token, site_id, start_time, end_time, page, size, time_type, **kwargs):  # noqa: E501
+        all_params = ['user_token', 'site_id', 'start_time', 'end_time', 'page', 'size', 'time_type', 'user_type']  # noqa: E501
+        all_params.extend(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s' to method get_site_utility_energy_history" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        for required in ['user_token', 'site_id', 'start_time', 'end_time', 'page', 'size', 'time_type']:
+            if required not in params or params[required] is None:
+                raise ValueError("Missing the required parameter `%s` when calling `get_site_utility_energy_history`" % required)  # noqa: E501
+
+        path_params = {'siteId': params['site_id']}
+        query_params = [
+            ('userToken', params['user_token']),
+            ('startTime', params['start_time']),
+            ('endTime', params['end_time']),
+            ('page', params['page']),
+            ('size', params['size']),
+            ('timeType', params['time_type'])
+        ]
+        if 'user_type' in params:
+            query_params.append(('userType', params['user_type']))
+
+        header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
+
+        return self.api_client.call_api(
+            '/hess/api/site/{siteId}/utilityEnergy', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            response_type='dict(str, object)',
+            auth_settings=['token'],
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats={})
+
     def hess_api_user_sites_list_get(self, user_token, page, size, **kwargs):  # noqa: E501
         """Site List  # noqa: E501
 

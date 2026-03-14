@@ -28,6 +28,26 @@ class TestDefaultApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def _capture_call(self):
+        captured = {}
+
+        def fake_call_api(resource_path, method, path_params=None, query_params=None,
+                          header_params=None, body=None, post_params=None, files=None,
+                          response_type=None, auth_settings=None, async_req=None,
+                          _return_http_data_only=None, collection_formats=None,
+                          _preload_content=True, _request_timeout=None):
+            captured['resource_path'] = resource_path
+            captured['method'] = method
+            captured['path_params'] = path_params or {}
+            captured['query_params'] = query_params or []
+            captured['header_params'] = header_params or {}
+            captured['response_type'] = response_type
+            captured['auth_settings'] = auth_settings or []
+            return captured
+
+        self.api.api_client.call_api = fake_call_api
+        return captured
+
     def test_hess_api_device_device_id_real_electricity_get(self):
         """Test case for hess_api_device_device_id_real_electricity_get
 
@@ -69,6 +89,57 @@ class TestDefaultApi(unittest.TestCase):
         Site List  # noqa: E501
         """
         pass
+
+    def test_get_inverter_relation(self):
+        captured = self._capture_call()
+
+        response = self.api.get_inverter_relation('site-1', user_type='1')
+
+        self.assertEqual(response['resource_path'], '/hess/api/device/{siteId}/relation')
+        self.assertEqual(response['method'], 'GET')
+        self.assertEqual(captured['path_params']['siteId'], 'site-1')
+        self.assertIn(('userType', '1'), captured['query_params'])
+        self.assertEqual(captured['response_type'], 'list[object]')
+
+    def test_get_device_alarm_events(self):
+        captured = self._capture_call()
+
+        response = self.api.get_device_alarm_events(
+            'token', 'site-1', 'sn-1', '2026-03-01', '2026-03-13',
+            page=1, size=20, lang='en', user_type='0'
+        )
+
+        self.assertEqual(response['resource_path'], '/hess/api/device/{siteId}/{serialNumber}/alarm')
+        self.assertEqual(captured['path_params']['siteId'], 'site-1')
+        self.assertEqual(captured['path_params']['serialNumber'], 'sn-1')
+        self.assertIn(('userToken', 'token'), captured['query_params'])
+        self.assertIn(('startTime', '2026-03-01'), captured['query_params'])
+        self.assertIn(('endTime', '2026-03-13'), captured['query_params'])
+        self.assertEqual(captured['header_params']['lang'], 'en')
+
+    def test_get_reissued_solar_energy(self):
+        captured = self._capture_call()
+
+        response = self.api.get_reissued_solar_energy('token', 'site-1')
+
+        self.assertEqual(response['resource_path'], '/hess/api/site/{siteId}/reissueSolarEnergy')
+        self.assertEqual(captured['response_type'], 'list[SolarGeneration]')
+        self.assertIn(('userToken', 'token'), captured['query_params'])
+
+    def test_get_site_utility_energy_history(self):
+        captured = self._capture_call()
+
+        response = self.api.get_site_utility_energy_history(
+            'token', 'site-1', '2026-03-01', '2026-03-13', 1, 30, 'day'
+        )
+
+        self.assertEqual(response['resource_path'], '/hess/api/site/{siteId}/utilityEnergy')
+        self.assertEqual(captured['response_type'], 'dict(str, object)')
+        self.assertIn(('timeType', 'day'), captured['query_params'])
+
+    def test_get_site_image_requires_user_token(self):
+        with self.assertRaises(ValueError):
+            self.api.get_site_image(None, 'site-1')
 
 
 if __name__ == '__main__':
