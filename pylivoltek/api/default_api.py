@@ -207,8 +207,11 @@ class DefaultApi(object):
                           path_params={'siteId': site_id, 'serialNumber': serial_number},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
-    def generate_user_token(self, user_token, body, user_type=None, **kwargs):
-        return self._call('POST', '/hess/api/user/userToken', query_params=self._token_query(user_token, user_type), body=body, **kwargs)
+    def generate_user_token(self, body, user_type=None, **kwargs):
+        query_params = []
+        if user_type is not None:
+            query_params.append(('userType', user_type))
+        return self._call('POST', '/hess/api/user/userToken', query_params=query_params, body=body, **kwargs)
 
     def list_user_tokens(self, user_token, user_type=None, **kwargs):
         call_kwargs, filters = self._split_call_kwargs(kwargs)
