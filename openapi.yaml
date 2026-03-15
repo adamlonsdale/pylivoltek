@@ -2736,80 +2736,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiEnvelopeObjectData'
-          x-doc-response-example: "{
-
-            \t\"data\":{
-
-            \        “historyList”:[ {
-
-            \            \" positive \": \" string \",
-
-            \            \" negetive \": \" string \",
-
-            \            \" ts \": \" string \",
-
-            \            \"siteId\": \" string \",
-
-
-            \        }],
-
-            \        \"etotalToGrid\": {
-
-            \            \"siteId\": \" string \",
-
-            \            \"ts\": \" string \",
-
-            \            \" powerGeneration \": \" string \"
-
-            \        }
-
-
-            \    }, \ 
-
-            \    \"message\": \"string\",
-
-            \    \"msgCode\": \"string\",
-
+          x-doc-response-example: |-
+            {
+              "data": {
+                "historyList": [
+                  {
+                    "positive": "string",
+                    "negetive": "string",
+                    "ts": "string",
+                    "siteId": "string"
+                  }
+                ],
+                "etotalToGrid": {
+                  "siteId": "string",
+                  "ts": "string",
+                  "powerGeneration": "string"
+                }
+              },
+              "message": "string",
+              "msgCode": "string"
             }
 
-
             {
-
-            \    \"code\": \"200\",
-
-            \    \"message\": \"SUCCESS\",
-
-            \    \"data\": {
-
-            \        \"historyList\": [
-
-            \            {
-
-            \                \"siteId\": \"527\",
-
-            \                \"ts\": \"20220724~20220725\",
-
-            \                \"positive\": \"0.0\",
-
-            \                \"negative\": \"0.0\"
-
-            \            }
-
-            \        ],
-
-            \        \" etotalToGrid \": {
-
-            \            \"siteId\": \"527\",
-
-            \            \"ts\": \"20220724~20220725\",
-
-            \            \" powerGeneration \": \"47.2\"
-
-            \        }
-
-            \    }
-
-            }"
+              "code": "200",
+              "message": "SUCCESS",
+              "data": {
+                "historyList": [
+                  {
+                    "siteId": "527",
+                    "ts": "20220724~20220725",
+                    "positive": "0.0",
+                    "negative": "0.0"
+                  }
+                ],
+                "etotalToGrid": {
+                  "siteId": "527",
+                  "ts": "20220724~20220725",
+                  "powerGeneration": "47.2"
+                }
+              }
+            }
         '401':
           description: Unauthorized
         '403':
