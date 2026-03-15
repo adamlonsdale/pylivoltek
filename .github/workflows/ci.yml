@@ -6,6 +6,8 @@ on:
 
 jobs:
   build-test-lint:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     steps:
