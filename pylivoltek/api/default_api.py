@@ -38,29 +38,29 @@ class DefaultApi(object):
     def _call(self, method, path, response_type='object', path_params=None,
               query_params=None, body=None, auth=True, **kwargs):
         """
-              Construct and dispatch an HTTP request to the configured ApiClient for a given endpoint.
-              
-              Builds Accept/Content-Type headers, ensures query parameters default to a list, and forwards request details
-              to self.api_client.call_api.
-              
-              Parameters:
-              	method (str): HTTP method (e.g. 'GET', 'POST').
-              	path (str): Request path template (e.g. '/hess/api/site/{siteId}').
-              	response_type (str): Expected response model name used for deserialization.
-              	path_params (dict, optional): Mapping of path template keys to values.
-              	query_params (list, optional): List of (key, value) tuples to be appended to the URL.
-              	body (object, optional): Request body to be sent as JSON when provided.
-              	auth (bool, optional): If True, use the client's token-based auth settings; if False, omit auth.
-              	**kwargs: Transport-control options propagated to the ApiClient. Recognised keys:
-              		- async_req: request executed asynchronously when truthy.
-              		- _return_http_data_only: return only deserialised data when True.
-              		- _preload_content: whether to preload response content.
-              		- _request_timeout: timeout for the request.
-              
-              Returns:
-              	The deserialised response corresponding to `response_type` (or raw response when client is configured so).
-              """
-              query_params = query_params or []
+        Construct and dispatch an HTTP request to the configured ApiClient for a given endpoint.
+
+        Builds Accept/Content-Type headers, ensures query parameters default to a list, and forwards request details
+        to self.api_client.call_api.
+
+        Parameters:
+        	method (str): HTTP method (e.g. 'GET', 'POST').
+        	path (str): Request path template (e.g. '/hess/api/site/{siteId}').
+        	response_type (str): Expected response model name used for deserialization.
+        	path_params (dict, optional): Mapping of path template keys to values.
+        	query_params (list, optional): List of (key, value) tuples to be appended to the URL.
+        	body (object, optional): Request body to be sent as JSON when provided.
+        	auth (bool, optional): If True, use the client's token-based auth settings; if False, omit auth.
+        	**kwargs: Transport-control options propagated to the ApiClient. Recognised keys:
+        		- async_req: request executed asynchronously when truthy.
+        		- _return_http_data_only: return only deserialised data when True.
+        		- _preload_content: whether to preload response content.
+        		- _request_timeout: timeout for the request.
+
+        Returns:
+        	The deserialised response corresponding to `response_type` (or raw response when client is configured so).
+        """
+        query_params = query_params or []
         header_params = {'Accept': self.api_client.select_header_accept(['application/json'])}
         if body is not None:
             header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])
