@@ -10,8 +10,17 @@ from pylivoltek.api_client import ApiClient
 class DefaultApi(object):
     """Hand-maintained API surface for Livoltek endpoints."""
 
+    _CALL_KWARGS = frozenset(['async_req', '_return_http_data_only', '_preload_content', '_request_timeout'])
+
     def __init__(self, api_client=None):
         self.api_client = api_client or ApiClient()
+
+    @staticmethod
+    def _split_call_kwargs(kwargs):
+        """Separate transport-control kwargs from query-filter kwargs."""
+        call_kwargs = {k: v for k, v in kwargs.items() if k in DefaultApi._CALL_KWARGS}
+        filters = {k: v for k, v in kwargs.items() if k not in DefaultApi._CALL_KWARGS}
+        return call_kwargs, filters
 
     def _call(self, method, path, response_type='object', path_params=None,
               query_params=None, body=None, auth=True, **kwargs):
@@ -70,16 +79,18 @@ class DefaultApi(object):
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
     # ---- Primary clean methods (spec-covered endpoints) ----
-    def list_sites(self, user_token, page, size, user_type=None, **filters):
+    def list_sites(self, user_token, page, size, user_type=None, **kwargs):
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         filters.update({'page': page, 'size': size})
         return self._call('GET', '/hess/api/userSites/list', 'InlineResponse200',
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
-    def list_devices(self, user_token, site_id, page, size, user_type=None, **filters):
+    def list_devices(self, user_token, site_id, page, size, user_type=None, **kwargs):
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         filters.update({'page': page, 'size': size})
         return self._call('GET', '/hess/api/device/{siteId}/list', 'InlineResponse2001',
                           path_params={'siteId': site_id},
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
     def get_current_power_flow(self, user_token, site_id, user_type=None, **kwargs):
         return self._call('GET', '/hess/api/site/{siteId}/curPowerflow', 'InlineResponse2004',
@@ -109,20 +120,23 @@ class DefaultApi(object):
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
-    def get_site_historical_power_flow(self, user_token, site_id, user_type=None, **filters):
+    def get_site_historical_power_flow(self, user_token, site_id, user_type=None, **kwargs):
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         return self._call('GET', '/hess/api/site/{siteId}/HisPowerflow',
                           path_params={'siteId': site_id},
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
-    def get_site_historical_active_power(self, user_token, site_id, user_type=None, **filters):
+    def get_site_historical_active_power(self, user_token, site_id, user_type=None, **kwargs):
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         return self._call('GET', '/hess/api/site/{siteId}/power',
                           path_params={'siteId': site_id},
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
-    def get_device_historical_alarm(self, user_token, site_id, serial_number, user_type=None, **filters):
+    def get_device_historical_alarm(self, user_token, site_id, serial_number, user_type=None, **kwargs):
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         return self._call('GET', '/hess/api/device/{siteId}/{serialNumber}/alarm',
                           path_params={'siteId': site_id, 'serialNumber': serial_number},
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
     def get_site_social_contribution(self, user_token, site_id, user_type=None, **kwargs):
         return self._call('GET', '/hess/api/site/{siteId}/socialContr',
@@ -134,15 +148,17 @@ class DefaultApi(object):
                           path_params={'siteId': site_id, 'serialNumber': serial_number},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
-    def get_site_historical_solar_generation(self, user_token, site_id, user_type=None, **filters):
+    def get_site_historical_solar_generation(self, user_token, site_id, user_type=None, **kwargs):
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         return self._call('GET', '/hess/api/site/{siteId}/solarEnergy',
                           path_params={'siteId': site_id},
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
-    def get_site_historical_grid_import_export(self, user_token, site_id, user_type=None, **filters):
+    def get_site_historical_grid_import_export(self, user_token, site_id, user_type=None, **kwargs):
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         return self._call('GET', '/hess/api/site/{siteId}/utilityEnergy',
                           path_params={'siteId': site_id},
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
     def create_charging_station(self, user_token, body, user_type=None, **kwargs):
         return self._call('POST', '/hess/api/chargeSite/create', query_params=self._token_query(user_token, user_type), body=body, **kwargs)
@@ -193,8 +209,9 @@ class DefaultApi(object):
     def generate_user_token(self, user_token, body, user_type=None, **kwargs):
         return self._call('POST', '/hess/api/user/userToken', query_params=self._token_query(user_token, user_type), body=body, **kwargs)
 
-    def list_user_tokens(self, user_token, user_type=None, **filters):
-        return self._call('GET', '/hess/api/user/userTokenList', query_params=self._token_query(user_token, user_type, filters))
+    def list_user_tokens(self, user_token, user_type=None, **kwargs):
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
+        return self._call('GET', '/hess/api/user/userTokenList', query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
     def get_device_power_report(self, user_token, body, user_type=None, **kwargs):
         return self._call('POST', '/hess/api/sample/energy', query_params=self._token_query(user_token, user_type), body=body, **kwargs)
