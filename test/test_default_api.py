@@ -55,7 +55,7 @@ class DefaultApiBehaviorTests(unittest.TestCase):
             (self.api.get_site_owner, ('t', 9), {}, 'GET', '/hess/api/site/{siteId}/siteOwner'),
             (self.api.get_device_basic_data, ('t',), {}, 'GET', '/hess/api/device/basicData'),
             (self.api.get_device_one_day_fault_alarm, ('t', 9, 'sn'), {}, 'GET', '/hess/api/device/{siteId}/{serialNumber}/oneDayFaultAlarm'),
-            (self.api.generate_user_token, ('t', {'a': 1}), {}, 'POST', '/hess/api/user/userToken'),
+            (self.api.generate_user_token, ({'a': 1},), {'user_type': 't'}, 'POST', '/hess/api/user/userToken'),
             (self.api.list_user_tokens, ({'account': 'a', 'pwd': 'p'},), {}, 'POST', '/hess/api/user/userTokenList'),
             (self.api.get_device_power_report, ('t', {'a': 1}), {}, 'POST', '/hess/api/sample/energy'),
             (self.api.get_site_day_energy, ('t', {'a': 1}), {}, 'POST', '/hess/api/sample/energy/site/day'),
