@@ -386,23 +386,24 @@ class DefaultApi(object):
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
-    def get_device_technical_parameters(self, user_token, site_id, serial_number, user_type=None, **filters):
+    def get_device_technical_parameters(self, user_token, site_id, serial_number, user_type=None, **kwargs):
         """
         Retrieve real-time technical parameters for a device.
-        
+
         Parameters:
             user_token (str): User authentication token included in the query string.
             site_id (str|int): Identifier of the site that contains the device.
             serial_number (str): Device serial number.
             user_type (str, optional): Optional user type included in the query string.
-            **filters: Additional query parameters to include in the request (only non-None entries are added).
-        
+            **kwargs: Additional query parameters to include in the request and transport-control options (async_req, _return_http_data_only, _preload_content, _request_timeout).
+
         Returns:
             object: The parsed response object from the device real-time parameters endpoint.
         """
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         return self._call('GET', '/hess/api/device/{siteId}/{serialNumber}/realTime',
                           path_params={'siteId': site_id, 'serialNumber': serial_number},
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
     def get_site_historical_solar_generation(self, user_token, site_id, user_type=None, **kwargs):
         """
@@ -618,20 +619,21 @@ class DefaultApi(object):
         return self._call('GET', '/hess/api/site/{siteId}/siteOwner', path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
-    def get_device_basic_data(self, user_token, user_type=None, **filters):
+    def get_device_basic_data(self, user_token, user_type=None, **kwargs):
         """
         Retrieve basic device data for the authorised user.
-        
+
         Parameters:
             user_token (str): Authentication token identifying the user.
             user_type (str, optional): Optional user type to include in the query parameters.
-            **filters: Additional query filters to include; keys with value None are omitted.
-        
+            **kwargs: Additional query filters to include and transport-control options (async_req, _return_http_data_only, _preload_content, _request_timeout).
+
         Returns:
             object: Parsed JSON response containing the device basic data.
         """
+        call_kwargs, filters = self._split_call_kwargs(kwargs)
         return self._call('GET', '/hess/api/device/basicData',
-                          query_params=self._token_query(user_token, user_type, filters))
+                          query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
     def get_device_one_day_fault_alarm(self, user_token, site_id, serial_number, user_type=None, **kwargs):
         """
