@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.grid_import_export_history import GridImportExportHistory  # noqa: E501
+from pylivoltek.models.grid_import_export_history import GridEnergyHistoryRecord  # noqa: E501
 from pylivoltek.rest import ApiException
 
 
-class TestGridImportExportHistory(unittest.TestCase):
-    """GridImportExportHistory unit test stubs"""
+class TestGridEnergyHistoryRecord(unittest.TestCase):
+    """GridEnergyHistoryRecord unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestGridImportExportHistory(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testGridImportExportHistory(self):
-        """Test GridImportExportHistory"""
+    def testGridEnergyHistoryRecord(self):
+        """Test GridEnergyHistoryRecord"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.grid_import_export_history.GridImportExportHistory()  # noqa: E501
+        # model = pylivoltek.models.grid_import_export_history.GridEnergyHistoryRecord()  # noqa: E501
         pass
 
 

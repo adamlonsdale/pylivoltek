@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.inline_response2008_data_etotal_to_grid import InlineResponse2008DataEtotalToGrid  # noqa: E501
+from pylivoltek.models.inline_response2008_data_etotal_to_grid import EnergyMeasurement  # noqa: E501
 from pylivoltek.rest import ApiException
 
 
-class TestInlineResponse2008DataEtotalToGrid(unittest.TestCase):
-    """InlineResponse2008DataEtotalToGrid unit test stubs"""
+class TestEnergyMeasurement(unittest.TestCase):
+    """EnergyMeasurement unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestInlineResponse2008DataEtotalToGrid(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testInlineResponse2008DataEtotalToGrid(self):
-        """Test InlineResponse2008DataEtotalToGrid"""
+    def testEnergyMeasurement(self):
+        """Test EnergyMeasurement"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.inline_response2008_data_etotal_to_grid.InlineResponse2008DataEtotalToGrid()  # noqa: E501
+        # model = pylivoltek.models.inline_response2008_data_etotal_to_grid.EnergyMeasurement()  # noqa: E501
         pass
 
 

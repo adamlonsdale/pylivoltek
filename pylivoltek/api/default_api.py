@@ -151,9 +151,9 @@ class DefaultApi(object):
             **kwargs: Transport and request-control options (for example: async_req, _return_http_data_only, _preload_content, _request_timeout).
         
         Returns:
-            InlineResponse2008: Recent utility (grid) import and export energy data for the specified site.
+            RecentUtilityEnergyResponse: Recent utility (grid) import and export energy data for the specified site.
         """
-        return self._call('GET', '/hess/api/site/{siteId}/recentUtilityEnergy', 'InlineResponse2008',
+        return self._call('GET', '/hess/api/site/{siteId}/recentUtilityEnergy', 'RecentUtilityEnergyResponse',
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
@@ -167,9 +167,9 @@ class DefaultApi(object):
             user_type (str, optional): Optional user type to include in the query parameters; when omitted, no userType is sent.
         
         Returns:
-            InlineResponse2009: Recent solar energy measurements and associated metadata for the site.
+            RecentSolarEnergyResponse: Recent solar energy measurements and associated metadata for the site.
         """
-        return self._call('GET', '/hess/api/site/{siteId}/recentSolarEnergy', 'InlineResponse2009',
+        return self._call('GET', '/hess/api/site/{siteId}/recentSolarEnergy', 'RecentSolarEnergyResponse',
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
@@ -416,7 +416,7 @@ class DefaultApi(object):
             **kwargs: Additional query filters and transport-control options. Query filters are forwarded as request parameters; transport-control options recognised and removed by the client are: `async_req`, `_return_http_data_only`, `_preload_content`, `_request_timeout`.
         
         Returns:
-            InlineResponse2009: Response object containing the site's historical solar generation data.
+            RecentSolarEnergyResponse: Response object containing the site's historical solar generation data.
         """
         call_kwargs, filters = self._split_call_kwargs(kwargs)
         return self._call('GET', '/hess/api/site/{siteId}/solarEnergy',

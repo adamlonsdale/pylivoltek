@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.history_item import HistoryItem  # noqa: E501
+from pylivoltek.models.history_item import EnergyHistoryPoint  # noqa: E501
 from pylivoltek.rest import ApiException
 
 
-class TestHistoryItem(unittest.TestCase):
-    """HistoryItem unit test stubs"""
+class TestEnergyHistoryPoint(unittest.TestCase):
+    """EnergyHistoryPoint unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestHistoryItem(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testHistoryItem(self):
-        """Test HistoryItem"""
+    def testEnergyHistoryPoint(self):
+        """Test EnergyHistoryPoint"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.history_item.HistoryItem()  # noqa: E501
+        # model = pylivoltek.models.history_item.EnergyHistoryPoint()  # noqa: E501
         pass
 
 
