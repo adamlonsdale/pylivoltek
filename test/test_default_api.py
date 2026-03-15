@@ -10,10 +10,25 @@ from pylivoltek.api_client import ApiClient
 
 class DefaultApiBehaviorTests(unittest.TestCase):
     def setUp(self):
+        """
+        Prepare a test fixture with a mocked ApiClient and a DefaultApi instance.
+        
+        Sets self.client to an ApiClient whose call_api method is replaced by a recorder that appends every call (args, kwargs) to self.calls and returns {'ok': True}, and sets self.api to a DefaultApi constructed with that mocked client.
+        """
         self.client = ApiClient()
         self.calls = []
 
         def fake_call_api(*args, **kwargs):
+            """
+            Record all positional and keyword arguments passed to this fake API call and return a success marker.
+            
+            Parameters:
+                *args (tuple): Positional arguments supplied to the call; these are appended as received.
+                **kwargs (dict): Keyword arguments supplied to the call; these are appended as received.
+            
+            Returns:
+                result (dict): A sentinel response {'ok': True}.
+            """
             self.calls.append((args, kwargs))
             return {'ok': True}
 
@@ -21,9 +36,20 @@ class DefaultApiBehaviorTests(unittest.TestCase):
         self.api = DefaultApi(self.client)
 
     def _last(self):
+        """
+        Retrieve the most recently recorded call from the test instance's call log.
+        
+        Returns:
+            The last entry from self.calls (the most recently recorded call).
+        """
         return self.calls[-1]
 
     def test_all_primary_methods_call_expected_path_and_verb(self):
+        """
+        Verify primary DefaultApi methods call the expected HTTP path and verb.
+        
+        Iterates a set of DefaultApi methods and asserts that each invocation forwards the configured request path, HTTP method and that the transport flag `_return_http_data_only` is set to True.
+        """
         cases = [
             (self.api.list_sites, ('t', 1, 10), {}, 'GET', '/hess/api/userSites/list'),
             (self.api.list_devices, ('t', 9, 1, 10), {}, 'GET', '/hess/api/device/{siteId}/list'),
@@ -79,6 +105,11 @@ class DefaultApiBehaviorTests(unittest.TestCase):
         self.assertEqual(self._last()[1]['body'], body)
 
     def test_get_device_technical_parameters_forwards_filters(self):
+        """
+        Verify get_device_technical_parameters includes provided filter values in the generated query parameters.
+        
+        Asserts that the call forwards `userToken`, `startTime` and `endTime` with the expected values in the request's query parameters.
+        """
         self.api.get_device_technical_parameters('tok', 1, 'sn1', startTime='2024-01-01', endTime='2024-01-02')
         cargs, _ = self._last()
         query_params = cargs[3]
@@ -87,6 +118,11 @@ class DefaultApiBehaviorTests(unittest.TestCase):
         self.assertIn(('endTime', '2024-01-02'), query_params)
 
     def test_deprecated_wrappers_forward_and_warn(self):
+        """
+        Verifies that a deprecated wrapper method issues a DeprecationWarning and forwards the call to the expected API path.
+        
+        This test calls the deprecated wrapper `hess_api_user_sites_list_get`, asserts that a `DeprecationWarning` was emitted, and asserts that the underlying API call used the path '/hess/api/userSites/list'.
+        """
         with warnings.catch_warnings(record=True) as caught:
             warnings.simplefilter('always')
             self.api.hess_api_user_sites_list_get('t', 1, 10)

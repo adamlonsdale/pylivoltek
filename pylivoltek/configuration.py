@@ -224,9 +224,15 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         ).get('authorization')
 
     def auth_settings(self):
-        """Gets Auth Settings dict for api client.
-
-        :return: The Auth Settings information dict.
+        """
+        Provide authentication settings mapping used by the API client.
+        
+        Returns:
+            dict: Mapping of authentication schemes to their settings. The 'token' entry contains an API key configuration with:
+                - 'type': 'api_key'
+                - 'in': 'header'
+                - 'key': 'Authorization'
+                - 'value': the API key string (possibly with prefix) obtained from get_api_key_with_prefix('token')
         """
         return {
             'token': {
@@ -238,9 +244,11 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         }
 
     def to_debug_report(self):
-        """Gets the essential information for debugging.
-
-        :return: The report for debugging.
+        """
+        Produce a diagnostic report containing environment and package version details.
+        
+        Returns:
+            str: A multi-line string listing the OS platform, Python version, API version and SDK package version.
         """
         return "Python SDK Debug Report:\n"\
                "OS: {env}\n"\
