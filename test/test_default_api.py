@@ -86,6 +86,47 @@ class DefaultApiBehaviorTests(unittest.TestCase):
         cargs, _ = self._last()
         self.assertEqual(cargs[0], '/hess/api/userSites/list')
 
+    def test_list_sites_transport_kwargs_forwarded_not_in_query(self):
+        """Transport controls must reach call_api, not appear as query params."""
+        self.api.list_sites('t', 1, 10, async_req=True, _request_timeout=30)
+        cargs, ckwargs = self._last()
+        # Transport controls must be forwarded to call_api
+        self.assertTrue(ckwargs.get('async_req'))
+        self.assertEqual(ckwargs.get('_request_timeout'), 30)
+        # They must NOT appear in the query params
+        query_keys = [k for k, _ in cargs[3]]
+        self.assertNotIn('async_req', query_keys)
+        self.assertNotIn('_request_timeout', query_keys)
+
+    def test_list_devices_transport_kwargs_forwarded_not_in_query(self):
+        """Transport controls must reach call_api, not appear as query params."""
+        self.api.list_devices('t', 9, 1, 10, _return_http_data_only=False, _request_timeout=5)
+        cargs, ckwargs = self._last()
+        self.assertFalse(ckwargs.get('_return_http_data_only'))
+        self.assertEqual(ckwargs.get('_request_timeout'), 5)
+        query_keys = [k for k, _ in cargs[3]]
+        self.assertNotIn('_return_http_data_only', query_keys)
+        self.assertNotIn('_request_timeout', query_keys)
+
+    def test_filters_methods_pass_query_filters_through(self):
+        """Regular query filters (non-transport kwargs) still reach query params."""
+        self.api.list_sites('t', 1, 10, stationName='MySite', async_req=False)
+        cargs, ckwargs = self._last()
+        query_keys = [k for k, _ in cargs[3]]
+        self.assertIn('stationName', query_keys)
+        # async_req=False is still a transport control (falsy); must NOT be in query
+        self.assertNotIn('async_req', query_keys)
+
+    def test_deprecated_list_sites_forwards_transport_kwargs(self):
+        """Deprecated wrapper hess_api_user_sites_list_get routes through list_sites."""
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter('always')
+            self.api.hess_api_user_sites_list_get('t', 1, 10, async_req=True)
+        cargs, ckwargs = self._last()
+        self.assertTrue(ckwargs.get('async_req'))
+        query_keys = [k for k, _ in cargs[3]]
+        self.assertNotIn('async_req', query_keys)
+
 
 if __name__ == '__main__':
     unittest.main()
