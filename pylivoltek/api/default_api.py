@@ -198,8 +198,9 @@ class DefaultApi(object):
         return self._call('GET', '/hess/api/site/{siteId}/siteOwner', path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
-    def get_device_basic_data(self, user_token, body, user_type=None, **kwargs):
-        return self._call('POST', '/hess/api/device/basicData', query_params=self._token_query(user_token, user_type), body=body, **kwargs)
+    def get_device_basic_data(self, user_token, user_type=None, **filters):
+        return self._call('GET', '/hess/api/device/basicData',
+                          query_params=self._token_query(user_token, user_type, filters))
 
     def get_device_one_day_fault_alarm(self, user_token, site_id, serial_number, user_type=None, **kwargs):
         return self._call('GET', '/hess/api/device/{siteId}/{serialNumber}/oneDayFaultAlarm',
