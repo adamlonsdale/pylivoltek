@@ -213,9 +213,11 @@ class DefaultApi(object):
             query_params.append(('userType', user_type))
         return self._call('POST', '/hess/api/user/userToken', query_params=query_params, body=body, **kwargs)
 
-    def list_user_tokens(self, user_token, user_type=None, **kwargs):
-        call_kwargs, filters = self._split_call_kwargs(kwargs)
-        return self._call('GET', '/hess/api/user/userTokenList', query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
+    def list_user_tokens(self, body, user_type=None, **kwargs):
+        query_params = []
+        if user_type is not None:
+            query_params.append(('userType', user_type))
+        return self._call('POST', '/hess/api/user/userTokenList', query_params=query_params, body=body, **kwargs)
 
     def get_device_power_report(self, user_token, body, user_type=None, **kwargs):
         return self._call('POST', '/hess/api/sample/energy', query_params=self._token_query(user_token, user_type), body=body, **kwargs)
