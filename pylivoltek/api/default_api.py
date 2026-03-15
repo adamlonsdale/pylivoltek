@@ -143,10 +143,10 @@ class DefaultApi(object):
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
-    def get_device_technical_parameters(self, user_token, site_id, serial_number, user_type=None, **kwargs):
+    def get_device_technical_parameters(self, user_token, site_id, serial_number, user_type=None, **filters):
         return self._call('GET', '/hess/api/device/{siteId}/{serialNumber}/realTime',
                           path_params={'siteId': site_id, 'serialNumber': serial_number},
-                          query_params=self._token_query(user_token, user_type), **kwargs)
+                          query_params=self._token_query(user_token, user_type, filters))
 
     def get_site_historical_solar_generation(self, user_token, site_id, user_type=None, **kwargs):
         call_kwargs, filters = self._split_call_kwargs(kwargs)

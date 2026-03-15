@@ -78,6 +78,14 @@ class DefaultApiBehaviorTests(unittest.TestCase):
         self.assertEqual(cargs[4]['Content-Type'], 'application/json')
         self.assertEqual(self._last()[1]['body'], body)
 
+    def test_get_device_technical_parameters_forwards_filters(self):
+        self.api.get_device_technical_parameters('tok', 1, 'sn1', startTime='2024-01-01', endTime='2024-01-02')
+        cargs, _ = self._last()
+        query_params = cargs[3]
+        self.assertIn(('userToken', 'tok'), query_params)
+        self.assertIn(('startTime', '2024-01-01'), query_params)
+        self.assertIn(('endTime', '2024-01-02'), query_params)
+
     def test_deprecated_wrappers_forward_and_warn(self):
         with warnings.catch_warnings(record=True) as caught:
             warnings.simplefilter('always')
