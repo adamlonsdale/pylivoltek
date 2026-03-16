@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.inline_response2009 import RecentSolarEnergyResponse  # noqa: E501
+from pylivoltek.models.recent_solar_energy_response import RecentSolarEnergyResponse  # noqa: E501
 from pylivoltek.rest import ApiException
 
 

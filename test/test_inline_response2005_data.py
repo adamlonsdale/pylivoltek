@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.inline_response2005_data import DeviceApiResponse  # noqa: E501
+from pylivoltek.models.device_api_response import DeviceApiResponse  # noqa: E501
 from pylivoltek.rest import ApiException
 
 

@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.inline_response2008_data_etotal_to_grid import EnergyMeasurement  # noqa: E501
+from pylivoltek.models.energy_measurement import EnergyMeasurement  # noqa: E501
 from pylivoltek.rest import ApiException
 
 

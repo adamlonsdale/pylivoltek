@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.history_item import EnergyHistoryPoint  # noqa: E501
+from pylivoltek.models.energy_history_point import EnergyHistoryPoint  # noqa: E501
 from pylivoltek.rest import ApiException
 
 

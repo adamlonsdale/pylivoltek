@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.recent_grid_import_export import SiteEnergyReading  # noqa: E501
+from pylivoltek.models.site_energy_reading import SiteEnergyReading  # noqa: E501
 from pylivoltek.rest import ApiException
 
 
@@ -31,7 +31,7 @@ class TestSiteEnergyReading(unittest.TestCase):
     def testSiteEnergyReading(self):
         """Test SiteEnergyReading"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.recent_grid_import_export.SiteEnergyReading()  # noqa: E501
+        # model = pylivoltek.models.site_energy_reading.SiteEnergyReading()  # noqa: E501
         pass
 
 

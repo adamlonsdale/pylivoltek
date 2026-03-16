@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.energy_storage_controller import StorageController  # noqa: E501
+from pylivoltek.models.storage_controller import StorageController  # noqa: E501
 from pylivoltek.rest import ApiException
 
 

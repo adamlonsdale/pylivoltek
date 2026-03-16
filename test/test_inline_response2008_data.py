@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.inline_response2008_data import UtilityEnergyTotals  # noqa: E501
+from pylivoltek.models.utility_energy_totals import UtilityEnergyTotals  # noqa: E501
 from pylivoltek.rest import ApiException
 
 
