@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pylivoltek"
+version = "1.0.1"
+description = "Livoltek API"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["Swagger", "Livoltek API"]
+dependencies = [
+    "certifi>=14.05.14",
+    "python-dateutil>=2.5.3",
+    "six>=1.10",
+    "urllib3>=1.15.1",
+]
+
+[dependency-groups]
+dev = [
+    "coverage>=4.0.3",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["pylivoltek*"]
+
+[tool.uv]
+default-groups = ["dev"]

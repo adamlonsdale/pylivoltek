@@ -1,9 +1,9 @@
 # pylivoltek
 Python API Client for the Livoltek API
 
-## Requirements.
+## Requirements
 
-Python 2.7 and 3.4+
+Python 3.9+
 
 ## Installation & Usage
 ### pip install
@@ -20,14 +20,19 @@ Then import the package:
 import pylivoltek 
 ```
 
-### Setuptools
+### Local install
 
-Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
+Install from the repository root with `pip`:
 
 ```sh
-python setup.py install --user
+python -m pip install .
 ```
-(or `sudo python setup.py install` to install the package for all users)
+
+For local development with `uv`:
+
+```sh
+uv sync
+```
 
 Then import the package:
 ```python
@@ -245,5 +250,3 @@ Class | Method | HTTP request | Description
 
 
 ## Author
-
-
