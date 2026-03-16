@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.energy_storage_controller import EnergyStorageController  # noqa: E501
+from pylivoltek.models.recent_utility_energy_response import RecentUtilityEnergyResponse  # noqa: E501
 from pylivoltek.rest import ApiException
 
 
-class TestEnergyStorageController(unittest.TestCase):
-    """EnergyStorageController unit test stubs"""
+class TestRecentUtilityEnergyResponse(unittest.TestCase):
+    """RecentUtilityEnergyResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestEnergyStorageController(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testEnergyStorageController(self):
-        """Test EnergyStorageController"""
+    def testRecentUtilityEnergyResponse(self):
+        """Test RecentUtilityEnergyResponse"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.energy_storage_controller.EnergyStorageController()  # noqa: E501
+        # model = pylivoltek.models.inline_response2008.RecentUtilityEnergyResponse()  # noqa: E501
         pass
 
 
