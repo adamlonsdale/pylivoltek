@@ -30,7 +30,7 @@ jobs:
         run: ruff check --select E9,F63,F7,F82 pylivoltek test
 
       - name: Test
-        run: python -m unittest discover
+        run: nosetests
 
       - name: Build package
         run: python -m build
