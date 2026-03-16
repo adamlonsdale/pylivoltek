@@ -31,9 +31,9 @@ jobs:
     - name: File Regex Replace
       uses: mingjun97/file-regex-replace@v1
       with:
-        regex: "VERSION = \"(\\d*\\.\\d*\\.\\d*)\""
-        replacement: "VERSION = \"${{ steps.extract-version.outputs.version }}\""
-        include: setup.py
+        regex: "version = \"(\\d*\\.\\d*\\.\\d*)\""
+        replacement: "version = \"${{ steps.extract-version.outputs.version }}\""
+        include: pyproject.toml
     - name: Build package
       run: python -m build
     - name: Publish package
