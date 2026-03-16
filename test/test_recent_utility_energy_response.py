@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import pylivoltek
-from pylivoltek.models.inline_response2008 import InlineResponse2008  # noqa: E501
+from pylivoltek.models.recent_utility_energy_response import RecentUtilityEnergyResponse  # noqa: E501
 from pylivoltek.rest import ApiException
 
 
-class TestInlineResponse2008(unittest.TestCase):
-    """InlineResponse2008 unit test stubs"""
+class TestRecentUtilityEnergyResponse(unittest.TestCase):
+    """RecentUtilityEnergyResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestInlineResponse2008(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testInlineResponse2008(self):
-        """Test InlineResponse2008"""
+    def testRecentUtilityEnergyResponse(self):
+        """Test RecentUtilityEnergyResponse"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.inline_response2008.InlineResponse2008()  # noqa: E501
+        # model = pylivoltek.models.inline_response2008.RecentUtilityEnergyResponse()  # noqa: E501
         pass
 
 
