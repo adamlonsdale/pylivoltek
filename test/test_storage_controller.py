@@ -30,9 +30,27 @@ class TestStorageController(unittest.TestCase):
 
     def testStorageController(self):
         """Test StorageController"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.energy_storage_controller.StorageController()  # noqa: E501
-        pass
+        # Construct model with required fields
+        sn = "SN123456789"
+        model_type = "LV-5000"
+
+        model = StorageController(sn=sn, model_type=model_type)
+
+        # Assert instance type
+        self.assertIsInstance(model, StorageController)
+
+        # Assert fields are preserved
+        self.assertEqual(model.sn, sn)
+        self.assertEqual(model.model_type, model_type)
+
+        # Test basic behavior - serialization
+        model_dict = model.to_dict()
+        self.assertEqual(model_dict['sn'], sn)
+        self.assertEqual(model_dict['model_type'], model_type)
+
+        # Test equality
+        model2 = StorageController(sn=sn, model_type=model_type)
+        self.assertEqual(model, model2)
 
 
 if __name__ == '__main__':

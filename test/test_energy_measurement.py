@@ -30,9 +30,28 @@ class TestEnergyMeasurement(unittest.TestCase):
 
     def testEnergyMeasurement(self):
         """Test EnergyMeasurement"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.inline_response2008_data_etotal_to_grid.EnergyMeasurement()  # noqa: E501
-        pass
+        # Construct object with realistic example values
+        value = 1250.75
+        unit = "kWh"
+
+        model = EnergyMeasurement(value=value, unit=unit)
+
+        # Assert instance type
+        self.assertIsInstance(model, EnergyMeasurement)
+
+        # Assert attributes equal provided values
+        self.assertEqual(model.value, value)
+        self.assertEqual(model.unit, unit)
+
+        # Validate dict/JSON serialization
+        model_dict = model.to_dict()
+        self.assertEqual(model_dict['value'], value)
+        self.assertEqual(model_dict['unit'], unit)
+
+        # Test string representation
+        model_str = model.to_str()
+        self.assertIn(str(value), model_str)
+        self.assertIn(unit, model_str)
 
 
 if __name__ == '__main__':

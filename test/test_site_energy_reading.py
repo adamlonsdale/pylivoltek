@@ -30,9 +30,38 @@ class TestSiteEnergyReading(unittest.TestCase):
 
     def testSiteEnergyReading(self):
         """Test SiteEnergyReading"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.site_energy_reading.SiteEnergyReading()  # noqa: E501
-        pass
+        # Instantiate with example values
+        site_id = "SITE_12345"
+        ts = 1678901234
+        positive = 250.75
+        negative = 125.50
+
+        model = SiteEnergyReading(
+            site_id=site_id,
+            ts=ts,
+            positive=positive,
+            negative=negative
+        )
+
+        # Assert instance type
+        self.assertIsInstance(model, SiteEnergyReading)
+
+        # Assert fields match inputs
+        self.assertEqual(model.site_id, site_id)
+        self.assertEqual(model.ts, ts)
+        self.assertEqual(model.positive, positive)
+        self.assertEqual(model.negative, negative)
+
+        # Test serialization/deserialization
+        model_dict = model.to_dict()
+        self.assertEqual(model_dict['site_id'], site_id)
+        self.assertEqual(model_dict['ts'], ts)
+        self.assertEqual(model_dict['positive'], positive)
+        self.assertEqual(model_dict['negative'], negative)
+
+        # Test string representation
+        model_str = model.to_str()
+        self.assertIsNotNone(model_str)
 
 
 if __name__ == '__main__':

@@ -30,9 +30,35 @@ class TestUtilityEnergyTotals(unittest.TestCase):
 
     def testUtilityEnergyTotals(self):
         """Test UtilityEnergyTotals"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.inline_response2008_data.UtilityEnergyTotals()  # noqa: E501
-        pass
+        # Import EnergyMeasurement for etotal_to_grid field
+        from pylivoltek.models.energy_measurement import EnergyMeasurement
+
+        # Construct instance with required attributes
+        site_id = "SITE_001"
+        etotal_to_grid = EnergyMeasurement(value=500.75, unit="kWh")
+        etotal_from_grid = {"value": 300.50, "unit": "kWh"}
+
+        model = UtilityEnergyTotals(
+            site_id=site_id,
+            etotal_to_grid=etotal_to_grid,
+            etotal_from_grid=etotal_from_grid
+        )
+
+        # Assert instance type
+        self.assertIsInstance(model, UtilityEnergyTotals)
+
+        # Assert instance attributes equal the inputs
+        self.assertEqual(model.site_id, site_id)
+        self.assertIsInstance(model.etotal_to_grid, EnergyMeasurement)
+        self.assertEqual(model.etotal_to_grid.value, 500.75)
+        self.assertEqual(model.etotal_from_grid, etotal_from_grid)
+
+        # Test serialization/deserialization preserves values
+        model_dict = model.to_dict()
+        self.assertEqual(model_dict['site_id'], site_id)
+        self.assertIsInstance(model_dict['etotal_to_grid'], dict)
+        self.assertEqual(model_dict['etotal_to_grid']['value'], 500.75)
+        self.assertEqual(model_dict['etotal_from_grid'], etotal_from_grid)
 
 
 if __name__ == '__main__':

@@ -30,9 +30,27 @@ class TestEnergyHistoryPoint(unittest.TestCase):
 
     def testEnergyHistoryPoint(self):
         """Test EnergyHistoryPoint"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.history_item.EnergyHistoryPoint()  # noqa: E501
-        pass
+        # Construct object with example values
+        ts = 1678901234
+        value = 123.45
+
+        model = EnergyHistoryPoint(ts=ts, value=value)
+
+        # Assert instance type
+        self.assertIsInstance(model, EnergyHistoryPoint)
+
+        # Assert attributes match provided values
+        self.assertEqual(model.ts, ts)
+        self.assertEqual(model.value, value)
+
+        # Test serialization round-trip
+        model_dict = model.to_dict()
+        self.assertEqual(model_dict['ts'], ts)
+        self.assertEqual(model_dict['value'], value)
+
+        # Verify to_str works
+        model_str = model.to_str()
+        self.assertIsNotNone(model_str)
 
 
 if __name__ == '__main__':

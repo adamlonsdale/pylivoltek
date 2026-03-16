@@ -30,9 +30,36 @@ class TestRecentSolarEnergyResponse(unittest.TestCase):
 
     def testRecentSolarEnergyResponse(self):
         """Test RecentSolarEnergyResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.inline_response2009.RecentSolarEnergyResponse()  # noqa: E501
-        pass
+        # Import SiteEnergyReading for data field
+        from pylivoltek.models.site_energy_reading import SiteEnergyReading
+
+        # Construct object with example values
+        code = 200
+        message = "Success"
+        data = SiteEnergyReading(
+            site_id="SITE_001",
+            ts=1678901234,
+            positive=100.5,
+            negative=50.25
+        )
+
+        model = RecentSolarEnergyResponse(code=code, message=message, data=data)
+
+        # Assert instance type
+        self.assertIsInstance(model, RecentSolarEnergyResponse)
+
+        # Assert each attribute
+        self.assertEqual(model.code, code)
+        self.assertEqual(model.message, message)
+        self.assertIsInstance(model.data, SiteEnergyReading)
+        self.assertEqual(model.data.site_id, "SITE_001")
+
+        # Test serialization/deserialization
+        model_dict = model.to_dict()
+        self.assertEqual(model_dict['code'], code)
+        self.assertEqual(model_dict['message'], message)
+        self.assertIsInstance(model_dict['data'], dict)
+        self.assertEqual(model_dict['data']['site_id'], "SITE_001")
 
 
 if __name__ == '__main__':

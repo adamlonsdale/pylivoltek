@@ -30,9 +30,26 @@ class TestDeviceApiResponse(unittest.TestCase):
 
     def testDeviceApiResponse(self):
         """Test DeviceApiResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.inline_response2005_data.DeviceApiResponse()  # noqa: E501
-        pass
+        # Construct object with example values
+        code = 200
+        message = "Success"
+        data = {"device_id": "12345", "status": "active"}
+
+        model = DeviceApiResponse(code=code, message=message, data=data)
+
+        # Assert instance type
+        self.assertIsInstance(model, DeviceApiResponse)
+
+        # Assert attributes match provided values
+        self.assertEqual(model.code, code)
+        self.assertEqual(model.message, message)
+        self.assertEqual(model.data, data)
+
+        # Test serialization
+        model_dict = model.to_dict()
+        self.assertEqual(model_dict['code'], code)
+        self.assertEqual(model_dict['message'], message)
+        self.assertEqual(model_dict['data'], data)
 
 
 if __name__ == '__main__':

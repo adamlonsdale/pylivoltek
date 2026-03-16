@@ -30,9 +30,34 @@ class TestGridEnergyHistoryRecord(unittest.TestCase):
 
     def testGridEnergyHistoryRecord(self):
         """Test GridEnergyHistoryRecord"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = pylivoltek.models.grid_energy_history_record.GridEnergyHistoryRecord()  # noqa: E501
-        pass
+        # Construct object with representative values
+        site_id = "SITE_001"
+        ts = 1678901234
+        positive = 150.25
+        negative = 75.50
+
+        model = GridEnergyHistoryRecord(
+            site_id=site_id,
+            ts=ts,
+            positive=positive,
+            negative=negative
+        )
+
+        # Assert instance type
+        self.assertIsInstance(model, GridEnergyHistoryRecord)
+
+        # Assert each attribute equals the provided value
+        self.assertEqual(model.site_id, site_id)
+        self.assertEqual(model.ts, ts)
+        self.assertEqual(model.positive, positive)
+        self.assertEqual(model.negative, negative)
+
+        # Test serialization round-trip (to_dict)
+        model_dict = model.to_dict()
+        self.assertEqual(model_dict['site_id'], site_id)
+        self.assertEqual(model_dict['ts'], ts)
+        self.assertEqual(model_dict['positive'], positive)
+        self.assertEqual(model_dict['negative'], negative)
 
 
 if __name__ == '__main__':
