@@ -104,10 +104,18 @@ class DefaultApiBehaviorTests(unittest.TestCase):
         self.assertEqual(cargs[4]['Content-Type'], 'application/json')
         self.assertEqual(self._last()[1]['body'], body)
 
+    def test_query_charging_stations_requests_typed_response_model(self):
+        body = {'account': 'user@example.com', 'pwd': 'md5', 'page': 1, 'size': 10}
+        self.api.query_charging_stations('token', body, user_type='1')
+        cargs, ckwargs = self._last()
+        self.assertEqual(cargs[3], [('userToken', 'token'), ('userType', '1')])
+        self.assertEqual(ckwargs['response_type'], 'ChargingStationQueryResponse')
+        self.assertEqual(ckwargs['body'], body)
+
     def test_get_device_technical_parameters_forwards_filters(self):
         """
         Verify get_device_technical_parameters includes provided filter values in the generated query parameters.
-        
+
         Asserts that the call forwards `userToken`, `startTime` and `endTime` with the expected values in the request's query parameters.
         """
         self.api.get_device_technical_parameters('tok', 1, 'sn1', startTime='2024-01-01', endTime='2024-01-02')

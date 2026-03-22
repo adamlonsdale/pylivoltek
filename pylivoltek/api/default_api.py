@@ -466,9 +466,10 @@ class DefaultApi(object):
             **kwargs: Additional transport or filter keyword arguments forwarded to the request.
         
         Returns:
-            The API response containing the queried charging station data.
+            ChargingStationQueryResponse: The API response containing the queried charging station data.
         """
-        return self._call('POST', '/hess/api/chargeSite/querySite', query_params=self._token_query(user_token, user_type), body=body, **kwargs)
+        return self._call('POST', '/hess/api/chargeSite/querySite', 'ChargingStationQueryResponse',
+                          query_params=self._token_query(user_token, user_type), body=body, **kwargs)
 
     def update_charging_station(self, user_token, body, user_type=None, **kwargs):
         """

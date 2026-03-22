@@ -247,7 +247,7 @@ wheels = [
 
 [[package]]
 name = "pylivoltek"
-version = "1.0.1"
+version = "1.0.10"
 source = { editable = "." }
 dependencies = [
     { name = "certifi" },

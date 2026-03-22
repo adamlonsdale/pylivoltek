@@ -22,6 +22,9 @@ from pylivoltek.configuration import Configuration
 # import models into sdk package
 from pylivoltek.models.api_login_body import ApiLoginBody
 from pylivoltek.models.api_response import ApiResponse
+from pylivoltek.models.charging_station import ChargingStation
+from pylivoltek.models.charging_station_price_band import ChargingStationPriceBand
+from pylivoltek.models.charging_station_query_response import ChargingStationQueryResponse
 from pylivoltek.models.current_power_flow import CurrentPowerFlow
 from pylivoltek.models.current_power_flow_response import CurrentPowerFlowResponse
 from pylivoltek.models.device import Device
