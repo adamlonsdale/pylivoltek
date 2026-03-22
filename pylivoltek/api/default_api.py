@@ -117,9 +117,9 @@ class DefaultApi(object):
             **kwargs: Transport and request-control options (e.g. timeout, async_req).
         
         Returns:
-            InlineResponse2005: Parsed response object containing the device's detailed information.
+            DeviceDetailsResponse: Parsed response object containing the device's detailed information.
         """
-        return self._call('GET', '/hess/api/device/{siteId}/{serialNumber}/details', 'InlineResponse2005',
+        return self._call('GET', '/hess/api/device/{siteId}/{serialNumber}/details', 'DeviceDetailsResponse',
                           path_params={'siteId': site_id, 'serialNumber': serial_number},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
@@ -134,9 +134,9 @@ class DefaultApi(object):
             **kwargs: Additional transport-level options (e.g. async_req, _return_http_data_only, _preload_content, _request_timeout).
         
         Returns:
-            InlineResponse2007: Parsed response containing the site's energy storage details.
+            EnergyStoreResponse: Parsed response containing the site's energy storage details.
         """
-        return self._call('GET', '/hess/api/site/{siteId}/ESS', 'InlineResponse2007',
+        return self._call('GET', '/hess/api/site/{siteId}/ESS', 'EnergyStoreResponse',
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
@@ -188,11 +188,11 @@ class DefaultApi(object):
                 with `page` and `size` before sending.
         
         Returns:
-            InlineResponse200: API response object containing the paginated list of user sites.
+            SiteListResponse: API response object containing the paginated list of user sites.
         """
         call_kwargs, filters = self._split_call_kwargs(kwargs)
         filters.update({'page': page, 'size': size})
-        return self._call('GET', '/hess/api/userSites/list', 'InlineResponse200',
+        return self._call('GET', '/hess/api/userSites/list', 'SiteListResponse',
                           query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
     def list_devices(self, user_token, site_id, page, size, user_type=None, **kwargs):
@@ -208,11 +208,11 @@ class DefaultApi(object):
             **kwargs: Additional query filters forwarded as query parameters (e.g. search or filter fields).
         
         Returns:
-            InlineResponse2001: Response model containing the paginated list of devices and associated metadata.
+            DeviceListResponse: Response model containing the paginated list of devices and associated metadata.
         """
         call_kwargs, filters = self._split_call_kwargs(kwargs)
         filters.update({'page': page, 'size': size})
-        return self._call('GET', '/hess/api/device/{siteId}/list', 'InlineResponse2001',
+        return self._call('GET', '/hess/api/device/{siteId}/list', 'DeviceListResponse',
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
@@ -227,9 +227,9 @@ class DefaultApi(object):
             **kwargs: Additional query filters or transport-control options (for example `page`, `size`, `async_req`, `_request_timeout`).
         
         Returns:
-            InlineResponse2004: Parsed response containing the site's current power flow data.
+            CurrentPowerFlowResponse: Parsed response containing the site's current power flow data.
         """
-        return self._call('GET', '/hess/api/site/{siteId}/curPowerflow', 'InlineResponse2004',
+        return self._call('GET', '/hess/api/site/{siteId}/curPowerflow', 'CurrentPowerFlowResponse',
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
@@ -244,9 +244,9 @@ class DefaultApi(object):
             **kwargs: Additional query filters or transport options passed through to the request (for example timeout or pagination).
         
         Returns:
-            InlineResponse2006: Response object containing the device's current generation and consumption metrics.
+            DeviceEnergySummaryResponse: Response object containing the device's current generation and consumption metrics.
         """
-        return self._call('GET', '/hess/api/device/{deviceId}/realElectricity', 'InlineResponse2006',
+        return self._call('GET', '/hess/api/device/{deviceId}/realElectricity', 'DeviceEnergySummaryResponse',
                           path_params={'deviceId': device_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
@@ -260,9 +260,9 @@ class DefaultApi(object):
         	user_type (str, optional): Optional user type included as the `userType` query parameter.
         
         Returns:
-        	InlineResponse2003: The site's generation overview data.
+        	SiteOverviewResponse: The site's generation overview data.
         """
-        return self._call('GET', '/hess/api/site/{siteId}/overview', 'InlineResponse2003',
+        return self._call('GET', '/hess/api/site/{siteId}/overview', 'SiteOverviewResponse',
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type), **kwargs)
 
@@ -274,9 +274,9 @@ class DefaultApi(object):
         	body (dict): Login request payload containing credentials and any required fields for authentication.
         
         Returns:
-        	InlineResponse2002: Authentication response object from the server, typically containing an access token and related user information.
+        	LoginResponse: Authentication response object from the server, including the access token payload.
         """
-        return self._call('POST', '/hess/api/login', 'InlineResponse2002', body=body, auth=False, **kwargs)
+        return self._call('POST', '/hess/api/login', 'LoginResponse', body=body, auth=False, **kwargs)
 
     def get_site_details(self, user_token, site_id, user_type=None, **kwargs):
         """
@@ -737,7 +737,7 @@ class DefaultApi(object):
             **kwargs: Transport-control or filter keyword arguments accepted by the API client.
         
         Returns:
-            InlineResponse200: Paginated list of user sites.
+            SiteListResponse: Paginated list of user sites.
         """
         self._deprecated('hess_api_user_sites_list_get', 'list_sites')
         return self.list_sites(user_token, page, size, **kwargs)
