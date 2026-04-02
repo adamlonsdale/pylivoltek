@@ -204,9 +204,12 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_energy_storage**](docs/DefaultApi.md#get_energy_storage) | **GET** /hess/api/site/{siteId}/ESS | Energy Storage Information
 *DefaultApi* | [**get_recent_energy_import_export**](docs/DefaultApi.md#get_recent_energy_import_export) | **GET** /hess/api/site/{siteId}/reissueUtilityEnergy | Get grid import/export history for the last 3 days.
 *DefaultApi* | [**get_recent_solar_generated_energy**](docs/DefaultApi.md#get_recent_solar_generated_energy) | **GET** /hess/api/site/{siteId}/reissueSolarEnergy | Get solar generation history for the last 3 days.
+*DefaultApi* | `get_bess_device_description` | **GET** /hess/api/cmc/device/{serialNumber}/description | Device self description
 *DefaultApi* | [**hess_api_device_device_id_real_electricity_get**](docs/DefaultApi.md#hess_api_device_device_id_real_electricity_get) | **GET** /hess/api/device/{deviceId}/realElectricity | Device Generation or Consumption
 *DefaultApi* | [**hess_api_device_site_id_list_get**](docs/DefaultApi.md#hess_api_device_site_id_list_get) | **GET** /hess/api/device/{siteId}/list | Device List
 *DefaultApi* | [**hess_api_login_post**](docs/DefaultApi.md#hess_api_login_post) | **POST** /hess/api/login | API User Login and Get Token
+*DefaultApi* | `remote_start_or_stop_bess_device` | **POST** /hess/api/cmc/device/remoteStartOrStop | Remote start and stop
+*DefaultApi* | `set_bess_device_work_mode` | **POST** /hess/api/cmc/device/workModeSet | Device working mode settings
 *DefaultApi* | [**hess_api_site_site_id_cur_powerflow_get**](docs/DefaultApi.md#hess_api_site_site_id_cur_powerflow_get) | **GET** /hess/api/site/{siteId}/curPowerflow | Current Power Flow
 *DefaultApi* | [**hess_api_site_site_id_overview_get**](docs/DefaultApi.md#hess_api_site_site_id_overview_get) | **GET** /hess/api/site/{siteId}/overview | Site Generation Overview
 *DefaultApi* | [**hess_api_user_sites_list_get**](docs/DefaultApi.md#hess_api_user_sites_list_get) | **GET** /hess/api/userSites/list | Site List
@@ -215,6 +218,11 @@ Class | Method | HTTP request | Description
 
  - [ApiLoginBody](docs/ApiLoginBody.md)
  - [ApiResponse](docs/ApiResponse.md)
+ - [BessDeviceDescription](docs/BessDeviceDescription.md)
+ - [BessDeviceDescriptionResponse](docs/BessDeviceDescriptionResponse.md)
+ - [BessRemoteStartStopRequest](docs/BessRemoteStartStopRequest.md)
+ - [BessWorkModeScheduleEntry](docs/BessWorkModeScheduleEntry.md)
+ - [BessWorkModeSetRequest](docs/BessWorkModeSetRequest.md)
  - [CurrentPowerFlow](docs/CurrentPowerFlow.md)
  - [Device](docs/Device.md)
  - [DeviceDetails](docs/DeviceDetails.md)

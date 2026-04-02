@@ -67,6 +67,9 @@ class DefaultApiBehaviorTests(unittest.TestCase):
             (self.api.get_device_technical_parameters, ('t', 9, 'sn'), {}, 'GET', '/hess/api/device/{siteId}/{serialNumber}/realTime'),
             (self.api.get_site_historical_solar_generation, ('t', 9), {'dateType': 'day'}, 'GET', '/hess/api/site/{siteId}/solarEnergy'),
             (self.api.get_site_historical_grid_import_export, ('t', 9), {'dateType': 'day'}, 'GET', '/hess/api/site/{siteId}/utilityEnergy'),
+            (self.api.get_bess_device_description, ('t', 'sn'), {}, 'GET', '/hess/api/cmc/device/{serialNumber}/description'),
+            (self.api.remote_start_or_stop_bess_device, ('t', {'a': 1}), {}, 'POST', '/hess/api/cmc/device/remoteStartOrStop'),
+            (self.api.set_bess_device_work_mode, ('t', {'a': 1}), {}, 'POST', '/hess/api/cmc/device/workModeSet'),
             (self.api.create_charging_station, ('t', {'a': 1}), {}, 'POST', '/hess/api/chargeSite/create'),
             (self.api.query_charging_stations, ('t', {'a': 1}), {}, 'POST', '/hess/api/chargeSite/querySite'),
             (self.api.update_charging_station, ('t', {'a': 1}), {}, 'POST', '/hess/api/chargeSite/update'),
@@ -110,6 +113,36 @@ class DefaultApiBehaviorTests(unittest.TestCase):
         cargs, ckwargs = self._last()
         self.assertEqual(cargs[3], [('userToken', 'token'), ('userType', '1')])
         self.assertEqual(ckwargs['response_type'], 'ChargingStationQueryResponse')
+        self.assertEqual(ckwargs['body'], body)
+
+    def test_get_bess_device_description_requests_typed_response_model(self):
+        self.api.get_bess_device_description('token', 'SN-123', user_type='1')
+        cargs, ckwargs = self._last()
+        self.assertEqual(cargs[3], [('userToken', 'token'), ('userType', '1')])
+        self.assertEqual(ckwargs['response_type'], 'BessDeviceDescriptionResponse')
+
+    def test_remote_start_or_stop_bess_device_sets_api_response_model(self):
+        body = {'account': 'user@example.com', 'pwd': 'md5', 'sn': 'SN-123', 'controlType': 1}
+        self.api.remote_start_or_stop_bess_device('token', body, user_type='1')
+        cargs, ckwargs = self._last()
+        self.assertEqual(cargs[3], [('userToken', 'token'), ('userType', '1')])
+        self.assertEqual(cargs[4]['Content-Type'], 'application/json')
+        self.assertEqual(ckwargs['response_type'], 'ApiResponse')
+        self.assertEqual(ckwargs['body'], body)
+
+    def test_set_bess_device_work_mode_sets_api_response_model(self):
+        body = {
+            'account': 'user@example.com',
+            'pwd': 'md5',
+            'sn': 'SN-123',
+            'workMode': 2,
+            'scheduleList': [{'chargeType': 1, 'startHour': 0, 'startMin': 30, 'endHour': 1, 'endMin': 30}],
+        }
+        self.api.set_bess_device_work_mode('token', body, user_type='1')
+        cargs, ckwargs = self._last()
+        self.assertEqual(cargs[3], [('userToken', 'token'), ('userType', '1')])
+        self.assertEqual(cargs[4]['Content-Type'], 'application/json')
+        self.assertEqual(ckwargs['response_type'], 'ApiResponse')
         self.assertEqual(ckwargs['body'], body)
 
     def test_get_device_technical_parameters_forwards_filters(self):

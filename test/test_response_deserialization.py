@@ -141,6 +141,44 @@ class ResponseDeserializationTests(unittest.TestCase):
         self.assertEqual(response.data[0].up_price[0].power_station, 620)
         self.assertEqual(response.data[0].total_capacity, "0")
 
+    def test_bess_device_description_response_deserializes_nested_data(self):
+        payload = {
+            "code": "200",
+            "message": "SUCCESS",
+            "data": {
+                "productType": "Hyper",
+                "protocolVersion": "0.48",
+                "supportedCommand": "Invert Restart,BMS Restart,Emergency charging",
+                "workMode": "backup,user defined,command mode",
+            },
+        }
+
+        response = self.client.deserialize(_FakeResponse(payload), "BessDeviceDescriptionResponse")
+
+        self.assertEqual(response.message, "SUCCESS")
+        self.assertIsNotNone(response.data)
+        self.assertEqual(response.data.product_type, "Hyper")
+        self.assertEqual(response.data.protocol_version, "0.48")
+        self.assertIn("Emergency charging", response.data.supported_command)
+
+    def test_bess_device_description_response_deserializes_flat_fields(self):
+        payload = {
+            "code": "200",
+            "message": "SUCCESS",
+            "productType": "Hyper",
+            "protocolVersion": "0.46",
+            "supportedCommand": "Invert Restart,BMS Restart",
+            "workMode": "backup,user defined",
+        }
+
+        response = self.client.deserialize(_FakeResponse(payload), "BessDeviceDescriptionResponse")
+
+        self.assertEqual(response.message, "SUCCESS")
+        self.assertIsNone(response.data)
+        self.assertEqual(response.product_type, "Hyper")
+        self.assertEqual(response.protocol_version, "0.46")
+        self.assertIn("Invert Restart", response.supported_command)
+
 
 if __name__ == "__main__":
     unittest.main()

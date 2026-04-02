@@ -441,6 +441,52 @@ class DefaultApi(object):
                           path_params={'siteId': site_id},
                           query_params=self._token_query(user_token, user_type, filters), **call_kwargs)
 
+    def get_bess_device_description(self, user_token, serial_number, user_type=None, **kwargs):
+        """
+        Retrieve the BESS device self-description payload for a device serial number.
+
+        Parameters:
+            user_token (str): Authentication token identifying the user.
+            serial_number (str): Device serial number used to look up the description.
+            user_type (str, optional): Optional user type to include in the request query.
+
+        Returns:
+            BessDeviceDescriptionResponse: Parsed response containing the device capabilities.
+        """
+        return self._call('GET', '/hess/api/cmc/device/{serialNumber}/description', 'BessDeviceDescriptionResponse',
+                          path_params={'serialNumber': serial_number},
+                          query_params=self._token_query(user_token, user_type), **kwargs)
+
+    def remote_start_or_stop_bess_device(self, user_token, body, user_type=None, **kwargs):
+        """
+        Send a remote start, stop, restart, or emergency charging command to a BESS device.
+
+        Parameters:
+            user_token (str): Authentication token identifying the user.
+            body (dict): Request payload containing account credentials, serial number, and control type.
+            user_type (str, optional): Optional user type included in the query parameters.
+
+        Returns:
+            ApiResponse: Parsed response envelope from the API.
+        """
+        return self._call('POST', '/hess/api/cmc/device/remoteStartOrStop', 'ApiResponse',
+                          query_params=self._token_query(user_token, user_type), body=body, **kwargs)
+
+    def set_bess_device_work_mode(self, user_token, body, user_type=None, **kwargs):
+        """
+        Update the working mode and optional user-defined schedule for a BESS device.
+
+        Parameters:
+            user_token (str): Authentication token identifying the user.
+            body (dict): Request payload containing account credentials, serial number, work mode, and schedule entries.
+            user_type (str, optional): Optional user type included in the query parameters.
+
+        Returns:
+            ApiResponse: Parsed response envelope from the API.
+        """
+        return self._call('POST', '/hess/api/cmc/device/workModeSet', 'ApiResponse',
+                          query_params=self._token_query(user_token, user_type), body=body, **kwargs)
+
     def create_charging_station(self, user_token, body, user_type=None, **kwargs):
         """
         Create a new charging station for the authenticated user.

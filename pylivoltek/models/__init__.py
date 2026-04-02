@@ -16,6 +16,11 @@ from __future__ import absolute_import
 # import models into model package
 from pylivoltek.models.api_login_body import ApiLoginBody
 from pylivoltek.models.api_response import ApiResponse
+from pylivoltek.models.bess_device_description import BessDeviceDescription
+from pylivoltek.models.bess_device_description_response import BessDeviceDescriptionResponse
+from pylivoltek.models.bess_remote_start_stop_request import BessRemoteStartStopRequest
+from pylivoltek.models.bess_work_mode_schedule_entry import BessWorkModeScheduleEntry
+from pylivoltek.models.bess_work_mode_set_request import BessWorkModeSetRequest
 from pylivoltek.models.charging_station import ChargingStation
 from pylivoltek.models.charging_station_price_band import ChargingStationPriceBand
 from pylivoltek.models.charging_station_query_response import ChargingStationQueryResponse
